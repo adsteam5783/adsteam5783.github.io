@@ -1,12 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ADS - 連携型サービスプラットフォーム</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ボタンのための上部テーマ切替セクション */
+    .theme-toggle {
+      background-color: #0e4d92;
+      text-align: center;
+      padding: 10px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .theme-toggle button {
+      background-color: #1b75cf;
+      color: #fff;
+      border: none;
+      padding: 8px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+    }
+    .theme-toggle button:hover {
+      background-color: #155ea9;
+    }
+
+    /* ダークモード */
+    body.dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    body.dark-mode header,
+    body.dark-mode footer {
+      background: #1e1e1e;
+    }
+
+    body.dark-mode nav a {
+      color: #bbb;
+    }
+
+    body.dark-mode .terms,
+    body.dark-mode .intro,
+    body.dark-mode .features,
+    body.dark-mode .call-to-action {
+      background: #2a2a2a;
+      color: #fff;
+    }
+
+    body.dark-mode .button {
+      background: #4caf50;
+    }
+  </style>
 </head>
 <body>
+  <!-- 上部テーマ切替ボタン -->
+  <div class="theme-toggle">
+    <button id="toggleThemeBtn">テーマ切替</button>
+  </div>
 
   <header>
     <h1>ADS</h1>
@@ -61,7 +119,7 @@
 
       <h3>第2条（免責事項）</h3>
       <p>
-        当サイトに掲載されている情報は、正確性・安全性を保証するものではありません。<br>
+        当サイトに掲載されている情報は、正確性・安全性を保証するものではありません。<br />
         情報の利用により生じたトラブル・損害について、当運営は一切の責任を負いかねます。
       </p>
 
@@ -76,5 +134,11 @@
     <p>&copy; 2025 ADS. All rights reserved.</p>
   </footer>
 
+  <script>
+    const btn = document.getElementById('toggleThemeBtn');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+  </script>
 </body>
 </html>
