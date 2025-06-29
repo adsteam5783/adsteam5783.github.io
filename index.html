@@ -16,16 +16,34 @@
       margin-right: auto;
       line-height: 1.7;
     }
+
     h1, h2 {
       color: #2c3e50;
     }
+
     a {
       color: #1e90ff;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
+    nav {
+      background-color: #3498db;
+      padding: 1em;
+      margin-bottom: 2em;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1em;
+      font-weight: bold;
+    }
+
     .section {
       background: #fff;
       padding: 1.5em 2em;
@@ -34,12 +52,15 @@
       box-shadow: 0 0 5px rgba(0,0,0,0.05);
       border-radius: 6px;
     }
+
     ul {
       margin-top: 0.5em;
     }
+
     ul li {
       margin-bottom: 0.5em;
     }
+
     .button {
       display: inline-block;
       background-color: #3498db;
@@ -50,9 +71,11 @@
       font-weight: bold;
       transition: background-color 0.3s;
     }
+
     .button:hover {
       background-color: #2980b9;
     }
+
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -64,11 +87,18 @@
 <body>
   <h1>ADSへようこそ！</h1>
 
+  <!-- ナビゲーション -->
+  <nav>
+    <a href="#services">サービス</a>
+    <a href="#notice">お知らせ</a>
+    <a href="#contact">お問い合わせ</a>
+  </nav>
+
   <div class="section">
     <p>ADSでは、多彩なサービスをご希望に合わせてご提供しています。あなたのニーズにぴったり合ったサポートをお約束します。</p>
   </div>
 
-  <h2>ADSサービスのご案内</h2>
+  <h2 id="services">ADSサービスのご案内</h2>
   <div class="section">
     <p>現在提供しているサービス</p>
     <ul>
@@ -88,7 +118,7 @@
     </p>
   </div>
 
-  <h2>お知らせ・対応時間</h2>
+  <h2 id="notice">お知らせ・対応時間</h2>
   <div class="section">
     <p><strong>【お知らせ】</strong></p>
     <p>明日、Wi-Fi回線を「エアー」から「光」に切り替える工事を予定しています。そのため、<strong>一時的に対応ができない時間帯が発生する可能性</strong>があります。対応できない時間は現在未定ですが、本日中に追ってご連絡いたします。</p>
@@ -105,6 +135,7 @@
     <p>※学校の下校時間によっては対応が遅れることがあります。予めご了承ください。</p>
   </div>
 
+  <h2 id="contact">お問い合わせ</h2>
   <div class="section">
     <p>このチームは情報もまなびます。</p>
     <p>お問い合わせ先はネット専門家　ガフ</p>
