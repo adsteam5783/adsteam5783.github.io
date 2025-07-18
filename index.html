@@ -114,6 +114,18 @@
             transition: all 0.3s ease;
         }
 
+        .hamburger.open div:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.open div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open div:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         /* Hero Section */
         .hero {
             margin-top: 80px;
@@ -122,6 +134,7 @@
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23162447" width="1200" height="600"/><circle cx="200" cy="150" r="50" fill="%2300ffff" opacity="0.1"/><circle cx="800" cy="300" r="80" fill="%2300ffff" opacity="0.05"/><circle cx="1000" cy="500" r="60" fill="%2300ffff" opacity="0.08"/></svg>');
             background-size: cover;
+            background-attachment: fixed;
             position: relative;
             animation: fadeIn 1.5s ease-in-out;
         }
@@ -165,6 +178,13 @@
             to { text-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
         }
 
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
         .cta-button {
             background: linear-gradient(45deg, #00ffff, #0080ff);
             color: #ffffff;
@@ -193,7 +213,29 @@
             color: #00ffff;
         }
 
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
         /* AI Solutions Section */
+        .ai-solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
         .ai-solution-card {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
@@ -211,7 +253,311 @@
             border-color: rgba(0, 255, 255, 0.5);
         }
 
-        /* Floating Particles */
+        .ai-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .ai-title {
+            font-size: 1.3rem;
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .ai-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .ai-features {
+            list-style: none;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .ai-features li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .ai-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        /* Prompt Library Section */
+        .prompt-library {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .prompt-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .prompt-category {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .prompt-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            color: #00ffff;
+        }
+
+        .category-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+        }
+
+        .prompt-count {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .download-button {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #ffffff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .team-specialty {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+
+        .contact-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 2px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #00ffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            padding-top: 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Floating Elements */
         .floating-elements {
             position: fixed;
             top: 0;
@@ -269,6 +615,36 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        .close {
+            color: #00ffff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #ffffff;
+        }
+
+        .modal h2 {
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .modal p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hamburger {
@@ -296,6 +672,19 @@
             }
 
             .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .ai-solutions-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -340,12 +729,264 @@
         </div>
     </section>
 
-    <!-- 他のセクション（AI Solutions, Prompt Library, Stats, Team, Contact, Footer）は元のコードをそのまま使用 -->
-    <!-- 省略のため、以下に含めないが、元のHTMLの該当セクションをコピーして使用してください -->
+    <section class="section" id="ai-solutions">
+        <div class="container">
+            <h2 class="section-title">AI活用ソリューション</h2>
+            <div class="ai-solutions-grid">
+                <div class="ai-solution-card">
+                    <div class="ai-icon">🤖</div>
+                    <h3 class="ai-title">ChatGPT活用支援</h3>
+                    <p class="ai-description">
+                        ChatGPTを最大限活用するための導入支援、プロンプト開発、業務フロー最適化を行います。
+                    </p>
+                    <ul class="ai-features">
+                        <li>カスタムプロンプトの開発</li>
+                        <li>APIインテグレーション</li>
+                        <li>チーム研修・教育</li>
+                        <li>ROI測定・改善提案</li>
+                    </ul>
+                </div>
+                <div class="ai-solution-card">
+                    <div class="ai-icon">🧠</div>
+                    <h3 class="ai-title">Claude活用コンサルティング</h3>
+                    <p class="ai-description">
+                        Anthropic社のClaudeを活用した高度な文書分析、コンテンツ生成、データ処理を実現します。
+                    </p>
+                    <ul class="ai-features">
+                        <li>長文文書の分析・要約</li>
+                        <li>コンテンツ生成自動化</li>
+                        <li>多言語対応ソリューション</li>
+                        <li>安全性重視の実装</li>
+                    </ul>
+                </div>
+                <div class="ai-solution-card">
+                    <div class="ai-icon">💎</div>
+                    <h3 class="ai-title">Gemini統合システム</h3>
+                    <p class="ai-description">
+                        Google GeminiのマルチモーダルAI機能を活用したイノベーティブなソリューションを提供します。
+                    </p>
+                    <ul class="ai-features">
+                        <li>画像・動画解析</li>
+                        <li>音声認識・生成</li>
+                        <li>リアルタイム処理</li>
+                        <li>Google Workspace連携</li>
+                    </ul>
+                </div>
+                <div class="ai-solution-card">
+                    <div class="ai-icon">🔧</div>
+                    <h3 class="ai-title">カスタムAIソリューション</h3>
+                    <p class="ai-description">
+                        企業固有のニーズに合わせたオーダーメイドのAIシステムを設計・開発します。
+                    </p>
+                    <ul class="ai-features">
+                        <li>業界特化型AI開発</li>
+                        <li>プライベートモデル構築</li>
+                        <li>セキュリティ強化</li>
+                        <li>継続的な改善サポート</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="prompt-library" id="prompts">
+        <div class="container">
+            <h2 class="section-title">プロンプトライブラリ</h2>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.8); margin-bottom: 50px; font-size: 1.1rem;">
+                業務効率化に直結する実用的なプロンプトを無料で配布しています。定期的に新しいプロンプトを追加中！
+            </p>
+            <div class="prompt-categories">
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">📝</div>
+                        <div class="category-title">文書作成・編集</div>
+                    </div>
+                    <div class="category-description">
+                        報告書、提案書、メールなどの文書作成を効率化するプロンプト集
+                    </div>
+                    <div class="prompt-count">25個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">📊</div>
+                        <div class="category-title">データ分析</div>
+                    </div>
+                    <div class="category-description">
+                        データの可視化、分析、レポート作成をサポートするプロンプト
+                    </div>
+                    <div class="prompt-count">20個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">🎨</div>
+                        <div class="category-title">クリエイティブ</div>
+                    </div>
+                    <div class="category-description">
+                        マーケティング、デザイン、コンテンツ制作のためのプロンプト
+                    </div>
+                    <div class="prompt-count">18個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">💼</div>
+                        <div class="category-title">業務効率化</div>
+                    </div>
+                    <div class="category-description">
+                        タスク管理、会議運営、プロジェクト管理に役立つプロンプト
+                    </div>
+                    <div class="prompt-count">22個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">🔍</div>
+                        <div class="category-title">リサーチ・分析</div>
+                    </div>
+                    <div class="category-description">
+                        市場調査、競合分析、情報収集のためのプロンプト
+                    </div>
+                    <div class="prompt-count">15個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">🎓</div>
+                        <div class="category-title">教育・研修</div>
+                    </div>
+                    <div class="category-description">
+                        学習支援、研修資料作成、知識管理のプロンプト
+                    </div>
+                    <div class="prompt-count">12個のプロンプト</div>
+                </div>
+            </div>
+            <div class="download-section">
+                <h3 style="color: #00ffff; margin-bottom: 20px; font-size: 1.5rem;">プロンプトをダウンロード</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 30px;">
+                    すべてのプロンプトを無料でダウンロードできます。使用方法ガイドも含まれています。
+                </p>
+                <div>
+                    <button class="download-button" onclick="openModal('allPrompts')">全プロンプトパック (PDF)</button>
+                    <button class="download-button" onclick="openModal('monthlyUpdate')">今月の新着プロンプト</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <h2 class="section-title">実績と成果</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">AI導入プロジェクト</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">配布プロンプト数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="stat-label">業務効率化率</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">業界対応</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="team">
+        <div class="container">
+            <h2 class="section-title">私たちのチーム</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-avatar">A</div>
+                    <div class="team-name">山田 太郎</div>
+                    <div class="team-role">AIソリューションアーキテクト</div>
+                    <div class="team-specialty">ChatGPT・Claude活用</div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">B</div>
+                    <div class="team-name">佐藤 花子</div>
+                    <div class="team-role">プロンプトエンジニア</div>
+                    <div class="team-specialty">プロンプト設計・最適化</div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">C</div>
+                    <div class="team-name">田中 次郎</div>
+                    <div class="team-role">データサイエンティスト</div>
+                    <div class="team-specialty">データ分析・可視化</div>
+                </div>
+                <div class="team-member">
+                    <div class="team-avatar">D</div>
+                    <div class="team-name">鈴木 美咲</div>
+                    <div class="team-role">プロジェクトマネージャー</div>
+                    <div class="team-specialty">AI導入プロジェクト管理</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">お問い合わせ</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-text">info@adsteam.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">+81-3-1234-5678</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">東京都千代田区1-2-3</div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="お名前" required style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid rgba(0, 255, 255, 0.3); border-radius: 5px; background: rgba(255, 255, 255, 0.05); color: #ffffff;">
+                        <input type="email" placeholder="メールアドレス" required style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid rgba(0, 255, 255, 0.3); border-radius: 5px; background: rgba(255, 255, 255, 0.05); color: #ffffff;">
+                        <textarea placeholder="メッセージ" required style="width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid rgba(0, 255, 255, 0.3); border-radius: 5px; background: rgba(255, 255, 255, 0.05); color: #ffffff; height: 150px;"></textarea>
+                        <button type="submit" class="cta-button">送信</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ADS Team</h3>
+                    <p>AIを活用した業務効率化とプロンプト配布で、企業の未来を切り開きます。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>リンク</h3>
+                    <p><a href="#home">ホーム</a></p>
+                    <p><a href="#ai-solutions">AI活用</a></p>
+                    <p><a href="#prompts">プロンプト配布</a></p>
+                    <p><a href="#team">チーム</a></p>
+                    <p><a href="#contact">お問い合わせ</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>お問い合わせ</h3>
+                    <p>Email: info@adsteam.com</p>
+                    <p>電話: +81-3-1234-5678</p>
+                    <p>住所: 東京都千代田区1-2-3</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 ADS Team. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
     <div id="modal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="closeModal()">×</span>
             <h2 id="modal-title">ダウンロード</h2>
             <p id="modal-description">選択したプロンプトパックをダウンロードします。詳細はこちらをご覧ください。</p>
             <div class="modal-buttons">
@@ -416,7 +1057,37 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                // Close mobile menu after clicking
+                document.querySelector('.nav-links').classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('open');
             });
+        });
+
+        // Intersection Observer for Section Animations
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.classList.add('fade-in');
+            observer.observe(section);
+        });
+
+        // Add fade-in class for animation
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 1s ease, transform 1s ease';
+        });
+
+        document.querySelectorAll('.visible').forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
         });
     </script>
 </body>
