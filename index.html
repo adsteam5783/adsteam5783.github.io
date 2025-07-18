@@ -1,102 +1,832 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <title>ADS公式 - キャンペーン & 情報部門配信</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background: linear-gradient(135deg, #c3dfff, #e7f0ff);
-      margin: 0;
-      padding: 40px 20px;
-      color: #222;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    .container {
-      background: white;
-      max-width: 650px;
-      width: 100%;
-      border-radius: 16px;
-      padding: 40px 30px;
-      box-shadow: 0 15px 35px rgba(0, 123, 255, 0.3);
-      text-align: center;
-    }
-    h1 {
-      font-weight: 900;
-      font-size: 2.8rem;
-      color: #007bff;
-      margin-bottom: 1rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-    }
-    p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      margin: 1rem 0 1.5rem;
-      color: #444;
-    }
-    .highlight {
-      color: #e63946;
-      font-weight: 700;
-      font-size: 1.3rem;
-      letter-spacing: 0.03em;
-    }
-    .section {
-      margin-top: 50px;
-      padding-top: 25px;
-      border-top: 2px solid #007bff;
-      box-shadow: inset 0 1px 0 #a3c7ff;
-    }
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #007bff, #0056b3);
-      color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
-      padding: 14px 36px;
-      border-radius: 30px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease;
-      box-shadow: 0 6px 12px rgba(0,123,255,0.35);
-      text-decoration: none;
-      user-select: none;
-    }
-    .btn:hover {
-      background: linear-gradient(135deg, #0056b3, #003f7f);
-      transform: scale(1.05);
-      box-shadow: 0 9px 18px rgba(0,86,179,0.5);
-    }
-    h2 {
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: #007bff;
-      margin-bottom: 15px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADSチーム - AI活用とプロンプト配布 | Advanced Data Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ffff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23162447" width="1200" height="600"/><circle cx="200" cy="150" r="50" fill="%2300ffff" opacity="0.1"/><circle cx="800" cy="300" r="80" fill="%2300ffff" opacity="0.05"/><circle cx="1000" cy="500" r="60" fill="%2300ffff" opacity="0.08"/></svg>');
+            background-size: cover;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: #00ffff;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #ffffff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid #00ffff;
+            color: #00ffff;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        /* AI Solutions Section */
+        .ai-solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .ai-solution-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .ai-solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+
+        .ai-solution-card:hover::before {
+            opacity: 1;
+        }
+
+        .ai-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .ai-title {
+            font-size: 1.3rem;
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .ai-description {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .ai-features {
+            list-style: none;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .ai-features li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .ai-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        /* Prompt Library Section */
+        .prompt-library {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .prompt-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .prompt-category {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .prompt-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+
+        .category-title {
+            font-size: 1.2rem;
+            color: #00ffff;
+        }
+
+        .category-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+        }
+
+        .prompt-count {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        .download-button {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #ffffff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #00ffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+        }
+
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            color: #00ffff;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .team-specialty {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+
+        .contact-text {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 80px;
+            border-top: 2px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #00ffff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(0, 255, 255, 0.2);
+            padding-top: 20px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00ffff;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            position: relative;
+        }
+
+        .close {
+            color: #00ffff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #ffffff;
+        }
+
+        .modal h2 {
+            color: #00ffff;
+            margin-bottom: 20px;
+        }
+
+        .modal p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .ai-solutions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>ADS公式</h1>
+    <div class="floating-elements" id="floating-elements"></div>
 
-    <p><span class="highlight">7月19日から夏休み期間終了まで</span><br>新メンバー加入キャンペーンを開催します！</p>
-    <p>今なら特典がいっぱい！ぜひこの機会にご参加ください。</p>
-    <a href="#" class="btn" role="button">キャンペーン詳細を見る</a>
+    <header>
+        <nav class="container">
+            <div class="logo">ADS Team</div>
+            <ul class="nav-links">
+                <li><a href="#home">ホーム</a></li>
+                <li><a href="#ai-solutions">AI活用</a></li>
+                <li><a href="#prompts">プロンプト配布</a></li>
+                <li><a href="#team">チーム</a></li>
+                <li><a href="#stats">実績</a></li>
+                <li><a href="#contact">お問い合わせ</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="section">
-      <h2>情報部門配信 開催中！</h2>
-      <p>現在、情報部門による配信も実施中です。<br>
-         最新の情報や役立つコンテンツをお届けしています。</p>
-      <a href="#" class="btn" role="button">配信詳細を見る</a>
-    </div>
-  </div>
-</body>
-</html>
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>ADS Team</h1>
+                <p class="subtitle">AI活用とプロンプト配布で業務効率化を実現</p>
+                <p class="description">
+                    ChatGPT、Claude、Geminiなど最新のAIツールを駆使して、企業の業務効率化を支援します。
+                    実用的なプロンプトの配布から、カスタムAIソリューションの開発まで、包括的なサポートを提供します。
+                </p>
+                <div class="cta-buttons">
+                    <a href="#ai-solutions" class="cta-button">AI活用事例を見る</a>
+                    <a href="#prompts" class="cta-button secondary">プロンプトを入手</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="ai-solutions">
+        <div class="container">
+            <h2 class="section-title">AI活用ソリューション</h2>
+            <div class="ai-solutions-grid">
+                <div class="ai-solution-card">
+                    <div class="ai-icon">🤖</div>
+                    <h3 class="ai-title">ChatGPT活用支援</h3>
+                    <p class="ai-description">
+                        ChatGPTを最大限活用するための導入支援、プロンプト開発、業務フロー最適化を行います。
+                    </p>
+                    <ul class="ai-features">
+                        <li>カスタムプロンプトの開発</li>
+                        <li>APIインテグレーション</li>
+                        <li>チーム研修・教育</li>
+                        <li>ROI測定・改善提案</li>
+                    </ul>
+                </div>
+                <div class="ai-solution-card">
+                    <div class="ai-icon">🧠</div>
+                    <h3 class="ai-title">Claude活用コンサルティング</h3>
+                    <p class="ai-description">
+                        Anthropic社のClaudeを活用した高度な文書分析、コンテンツ生成、データ処理を実現します。
+                    </p>
+                    <ul class="ai-features">
+                        <li>長文文書の分析・要約</li>
+                        <li>コンテンツ生成自動化</li>
+                        <li>多言語対応ソリューション</li>
+                        <li>安全性重視の実装</li>
+                    </ul>
+                </div>
+                <div class="ai-solution-card">
+                    <div class="ai-icon">💎</div>
+                    <h3 class="ai-title">Gemini統合システム</h3>
+                    <p class="ai-description">
+                        Google GeminiのマルチモーダルAI機能を活用したイノベーティブなソリューションを提供します。
+                    </p>
+                    <ul class="ai-features">
+                        <li>画像・動画解析</li>
+                        <li>音声認識・生成</li>
+                        <li>リアルタイム処理</li>
+                        <li>Google Workspace連携</li>
+                    </ul>
+                </div>
+                <div class="ai-solution-card">
+                    <div class="ai-icon">🔧</div>
+                    <h3 class="ai-title">カスタムAIソリューション</h3>
+                    <p class="ai-description">
+                        企業固有のニーズに合わせたオーダーメイドのAIシステムを設計・開発します。
+                    </p>
+                    <ul class="ai-features">
+                        <li>業界特化型AI開発</li>
+                        <li>プライベートモデル構築</li>
+                        <li>セキュリティ強化</li>
+                        <li>継続的な改善サポート</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="prompt-library" id="prompts">
+        <div class="container">
+            <h2 class="section-title">プロンプトライブラリ</h2>
+            <p style="text-align: center; color: rgba(255, 255, 255, 0.8); margin-bottom: 50px; font-size: 1.1rem;">
+                業務効率化に直結する実用的なプロンプトを無料で配布しています。定期的に新しいプロンプトを追加中！
+            </p>
+            
+            <div class="prompt-categories">
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">📝</div>
+                        <div class="category-title">文書作成・編集</div>
+                    </div>
+                    <div class="category-description">
+                        報告書、提案書、メールなどの文書作成を効率化するプロンプト集
+                    </div>
+                    <div class="prompt-count">25個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">📊</div>
+                        <div class="category-title">データ分析</div>
+                    </div>
+                    <div class="category-description">
+                        データの可視化、分析、レポート作成をサポートするプロンプト
+                    </div>
+                    <div class="prompt-count">20個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">🎨</div>
+                        <div class="category-title">クリエイティブ</div>
+                    </div>
+                    <div class="category-description">
+                        マーケティング、デザイン、コンテンツ制作のためのプロンプト
+                    </div>
+                    <div class="prompt-count">18個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">💼</div>
+                        <div class="category-title">業務効率化</div>
+                    </div>
+                    <div class="category-description">
+                        タスク管理、会議運営、プロジェクト管理に役立つプロンプト
+                    </div>
+                    <div class="prompt-count">22個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">🔍</div>
+                        <div class="category-title">リサーチ・分析</div>
+                    </div>
+                    <div class="category-description">
+                        市場調査、競合分析、情報収集のためのプロンプト
+                    </div>
+                    <div class="prompt-count">15個のプロンプト</div>
+                </div>
+                <div class="prompt-category">
+                    <div class="category-header">
+                        <div class="category-icon">🎓</div>
+                        <div class="category-title">教育・研修</div>
+                    </div>
+                    <div class="category-description">
+                        学習支援、研修資料作成、知識管理のプロンプト
+                    </div>
+                    <div class="prompt-count">12個のプロンプト</div>
+                </div>
+            </div>
+
+            <div class="download-section">
+                <h3 style="color: #00ffff; margin-bottom: 20px; font-size: 1.5rem;">プロンプトをダウンロード</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 30px;">
+                    すべてのプロンプトを無料でダウンロードできます。使用方法ガイドも含まれています。
+                </p>
+                <div>
+                    <button class="download-button" onclick="openModal('allPrompts')">全プロンプトパック (PDF)</button>
+                    <button class="download-button" onclick="openModal('monthlyUpdate')">今月の新着プロンプト</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section" id="stats">
+        <div class="container">
+            <h2 class="section-title">実績と成果</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">AI導入プロジェクト</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">配布プロンプト数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">85%</div>
+                    <div class="
