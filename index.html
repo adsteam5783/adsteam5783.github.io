@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>7月オンライン上映スケジュール</title>
+  <title>オンライン上映スケジュール - 非公式映画会</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -11,28 +11,54 @@
       color: #333;
       margin: 0;
     }
+
+    /* スクロールバナー */
+    .scroll-banner {
+      background-color: #e60000;
+      color: white;
+      font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .scroll-banner div {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-left 20s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
     header {
       background-color: #cc0000;
       color: white;
       padding: 1em 2em;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       position: sticky;
-      top: 0;
+      top: 40px; /* バナー高さに合わせて調整 */
       z-index: 10;
     }
+
     header h1 {
       margin: 0;
       font-size: 1.6em;
     }
+
     header nav {
       margin-top: 0.5em;
     }
+
     header nav a {
       color: white;
       margin-right: 1.5em;
       text-decoration: none;
       font-weight: bold;
     }
+
     header nav a:hover {
       text-decoration: underline;
     }
@@ -90,6 +116,12 @@
 </head>
 <body>
 
+  <!-- スクロールバナー -->
+  <div class="scroll-banner">
+    <div>📢 本日の上映（7月26日）は中止となりました。現在公開中の作品は上映対象外です。当公式サイトでも一部上映中！</div>
+  </div>
+
+  <!-- ヘッダー -->
   <header>
     <h1>🎥 オンライン映画会</h1>
     <nav>
@@ -100,6 +132,7 @@
     </nav>
   </header>
 
+  <!-- メイン -->
   <main>
     <h2>7月オンライン上映スケジュール（非公式）</h2>
 
@@ -108,6 +141,11 @@
       <p>🎥 本上映は非公式のオンライン映画会であり、公式とは一切関係がありません。</p>
       <p>⚠️ <strong>現在公開中の「鬼滅の刃」は上映いたしません。有料での視聴をご検討ください。</strong></p>
     </div>
+
+    <p style="text-align:center; font-weight:bold; margin-top:2em; font-size:1.1em;">
+      🎬 当公式サイトでも一部作品の上映を行っております。<br>
+      詳細は下記スケジュールをご確認ください。
+    </p>
 
     <table>
       <thead>
@@ -156,8 +194,9 @@
     </div>
 
     <footer>
+      このサイトをご覧いただきありがとうございます。<br>
       &copy; <span id="year"></span> 非公式オンライン映画会<br>
-      ※このサイトは違法な配信リンクを一切提供しておりません。
+      ※違法な配信リンクや著作権侵害行為は一切行っておりません。
     </footer>
   </main>
 
