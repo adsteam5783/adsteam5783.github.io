@@ -3,68 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="違法コンテンツの注意喚起。著作権違反や違法サイトの危険性について解説します。">
-  <title>違法コンテンツへの注意喚起</title>
+  <title>7月オンライン上映スケジュール</title>
   <style>
     body {
-      background-color: #fff5f5;
       font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f8;
+      color: #333;
       margin: 0;
       padding: 2em;
     }
     main {
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
     }
-    .alert {
-      background-color: #ffe5e5;
-      border-left: 8px solid #e60000;
-      padding: 1.5em;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .alert h1 {
+    h1 {
+      text-align: center;
       color: #cc0000;
-      margin-top: 0;
     }
-    .alert p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      color: #333;
+    .info, .note {
+      background-color: #fff;
+      border-left: 6px solid #cc0000;
+      padding: 1em 1.5em;
+      margin-bottom: 2em;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
-    .footer {
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+    }
+    th, td {
+      padding: 0.8em;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #cc0000;
+      color: #fff;
+    }
+    .cancel {
+      color: #999;
+      text-decoration: line-through;
+    }
+    footer {
       margin-top: 3em;
       text-align: center;
-      color: #666;
       font-size: 0.9em;
+      color: #666;
     }
   </style>
 </head>
 <body>
 
   <main>
-    <div class="alert">
-      <h1>🚨 注意喚起：違法コンテンツについて</h1>
-      <p>
-        現在、Discord、X（旧Twitter）、YouTube などのSNSや動画サイトにおいて、違法にアップロードされた映画やアニメ、またそれらへのリンクを無断で転載する行為が広がっています。
-      </p>
-      <p>
-        これらは <strong>著作権法違反</strong> にあたる重大な <strong>犯罪行為</strong> です。<br>
-        また、違法サイトにはウイルスや詐欺広告が含まれる危険もあります。
-      </p>
-      <p>
-        <strong>このサイトでは、違法サイトの紹介やリンクの掲載は一切行いません。</strong><br>
-        安全で健全なインターネット利用を心がけましょう。
-      </p>
+    <h1>🎬 7月オンライン上映スケジュール（非公式）</h1>
+
+    <div class="info">
+      <p>📍 1スクリーン制・定員50名・参加無料・チケット不要</p>
+      <p>🎥 本上映は非公式のオンライン映画会であり、公式とは一切関係がありません。</p>
+      <p>⚠️ <strong>現在公開中の「鬼滅の刃」は上映いたしません。有料での視聴をご検討ください。</strong></p>
     </div>
 
-    <div class="footer">
-      &copy; <span id="year"></span> あなたのサイト名 — 安心・安全なWeb利用を推進します。
+    <table>
+      <thead>
+        <tr>
+          <th>日付</th>
+          <th>時間</th>
+          <th>上映作品</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="cancel">
+          <td>7月26日（土）</td>
+          <td>17:00 / 19:00</td>
+          <td>すとぷり はじまりのものがたり（※上映中止）</td>
+        </tr>
+        <tr>
+          <td>7月27日（日）</td>
+          <td>13:42</td>
+          <td>すとぷり はじまりのものがたり</td>
+        </tr>
+        <tr>
+          <td>7月27日（日）</td>
+          <td>15:30</td>
+          <td>技術開戦ゼロ</td>
+        </tr>
+        <tr>
+          <td>7月29日（火）</td>
+          <td>13:00</td>
+          <td>鬼滅の刃 列車編（※過去作）</td>
+        </tr>
+        <tr>
+          <td>7月31日（木）</td>
+          <td>18:00</td>
+          <td>技術開戦ゼロ</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <ul>
+        <li>各上映の視聴は1日に1回までです。</li>
+        <li>録画・スクリーンショットは禁止です。</li>
+        <li>上映開始5分前にDiscordチャンネルで視聴リンクを配布します。</li>
+        <li>参加希望者はDiscord内の案内メッセージにリアクションしてください。</li>
+      </ul>
     </div>
+
+    <footer>
+      &copy; <span id="year"></span> 非公式オンライン映画会<br>
+      ※このサイトは違法な配信リンクを一切提供しておりません。
+    </footer>
   </main>
 
   <script>
-    // 年を自動更新
+    // 年を自動挿入
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
