@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>オンライン上映スケジュール - 非公式映画会</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎬 オンライン映画館</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f4f8;
-      color: #333;
       margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d0d0d;
+      color: #f5f5f5;
     }
 
-    /* スクロールバナー */
-    .scroll-banner {
-      background-color: #e60000;
-      color: white;
+    /* 映画館風ヘッダー */
+    header {
+      background: linear-gradient(90deg, #111, #222);
+      color: #f1c40f;
+      padding: 1.5em;
+      text-align: center;
+      font-size: 2em;
+      letter-spacing: 2px;
+      box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+      text-shadow: 0 0 10px #f1c40f;
+    }
+
+    nav {
+      text-align: center;
+      margin-top: 1em;
+    }
+
+    nav a {
+      color: #f1c40f;
+      margin: 0 1.2em;
+      text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd700;
+    }
+
+    .scroll-banner {
+      background-color: #cc0000;
+      color: white;
       overflow: hidden;
       white-space: nowrap;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
     }
 
     .scroll-banner div {
       display: inline-block;
       padding-left: 100%;
-      animation: scroll-left 20s linear infinite;
+      animation: scroll-left 18s linear infinite;
     }
 
     @keyframes scroll-left {
@@ -33,84 +61,60 @@
       100% { transform: translateX(-100%); }
     }
 
-    header {
-      background-color: #cc0000;
-      color: white;
-      padding: 1em 2em;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 40px; /* バナー高さに合わせて調整 */
-      z-index: 10;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.6em;
-    }
-
-    header nav {
-      margin-top: 0.5em;
-    }
-
-    header nav a {
-      color: white;
-      margin-right: 1.5em;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    header nav a:hover {
-      text-decoration: underline;
-    }
-
     main {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2em;
+      max-width: 900px;
+      margin: 2em auto;
+      padding: 1em;
     }
 
     h2 {
       text-align: center;
-      color: #cc0000;
-    }
-
-    .info, .note {
-      background-color: #fff;
-      border-left: 6px solid #cc0000;
-      padding: 1em 1.5em;
-      margin-bottom: 2em;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      color: #ffd700;
+      text-shadow: 0 0 10px #ff0;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1em;
+      margin-top: 1.5em;
+      background-color: #1a1a1a;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
     }
 
     th, td {
-      padding: 0.8em;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
+      padding: 1em;
+      border-bottom: 1px solid #444;
+      text-align: center;
     }
 
     th {
-      background-color: #cc0000;
-      color: #fff;
+      background-color: #222;
+      color: #f1c40f;
+    }
+
+    tr:hover {
+      background-color: #2c2c2c;
     }
 
     .cancel {
-      color: #999;
+      color: #888;
       text-decoration: line-through;
     }
 
-    footer {
-      margin-top: 3em;
+    .notice {
+      margin-top: 2em;
+      background: #222;
+      padding: 1.5em;
+      border-left: 6px solid #f39c12;
+      border-radius: 10px;
+      box-shadow: 0 0 12px rgba(255, 255, 0, 0.1);
+    }
+
+    .footer {
       text-align: center;
+      color: #aaa;
+      margin-top: 4em;
       font-size: 0.9em;
-      color: #666;
-      padding-bottom: 2em;
     }
   </style>
 </head>
@@ -118,34 +122,28 @@
 
   <!-- スクロールバナー -->
   <div class="scroll-banner">
-    <div>📢 本日の上映（7月26日）は中止となりました。現在公開中の作品は上映対象外です。当公式サイトでも一部上映中！</div>
+    <div>📢 本日の上映（7月26日）は中止となりました。現在公開中の作品は上映しません。違法配信に注意！</div>
   </div>
 
   <!-- ヘッダー -->
   <header>
-    <h1>🎥 オンライン映画会</h1>
+    🎬 オンライン映画館
     <nav>
       <a href="#">ホーム</a>
       <a href="#">スケジュール</a>
-      <a href="#">Discord参加</a>
-      <a href="#">ガイドライン</a>
+      <a href="#">Discord</a>
+      <a href="#">ガイド</a>
     </nav>
   </header>
 
   <!-- メイン -->
   <main>
-    <h2>7月オンライン上映スケジュール（非公式）</h2>
+    <h2>🎞️ 7月オンライン上映スケジュール</h2>
 
-    <div class="info">
-      <p>📍 1スクリーン制・定員50名・参加無料・チケット不要</p>
-      <p>🎥 本上映は非公式のオンライン映画会であり、公式とは一切関係がありません。</p>
-      <p>⚠️ <strong>現在公開中の「鬼滅の刃」は上映いたしません。有料での視聴をご検討ください。</strong></p>
+    <div class="notice">
+      <p>⚠️ <strong>当サイトでも一部上映を行っておりますが、現在公開中の作品（例：鬼滅の刃）については上映いたしません。</strong></p>
+      <p>🎟️ すべて無料・定員50名・Discordで参加受付</p>
     </div>
-
-    <p style="text-align:center; font-weight:bold; margin-top:2em; font-size:1.1em;">
-      🎬 当公式サイトでも一部作品の上映を行っております。<br>
-      詳細は下記スケジュールをご確認ください。
-    </p>
 
     <table>
       <thead>
@@ -159,7 +157,7 @@
         <tr class="cancel">
           <td>7月26日（土）</td>
           <td>17:00 / 19:00</td>
-          <td>すとぷり はじまりのものがたり（※上映中止）</td>
+          <td>すとぷり はじまりのものがたり（中止）</td>
         </tr>
         <tr>
           <td>7月27日（日）</td>
@@ -174,7 +172,7 @@
         <tr>
           <td>7月29日（火）</td>
           <td>13:00</td>
-          <td>鬼滅の刃 列車編（※過去作）</td>
+          <td>鬼滅の刃 列車編（過去作）</td>
         </tr>
         <tr>
           <td>7月31日（木）</td>
@@ -184,26 +182,23 @@
       </tbody>
     </table>
 
-    <div class="note">
+    <div class="notice">
       <ul>
-        <li>各上映の視聴は1日に1回までです。</li>
-        <li>録画・スクリーンショットは禁止です。</li>
-        <li>上映開始5分前にDiscordチャンネルで視聴リンクを配布します。</li>
-        <li>参加希望者はDiscord内の案内メッセージにリアクションしてください。</li>
+        <li>同一作品の視聴は1日に1回まで</li>
+        <li>録画・録音・配信は禁止</li>
+        <li>Discordの案内メッセージにリアクションで参加申込</li>
+        <li>上映5分前に視聴リンクを共有</li>
       </ul>
     </div>
 
-    <footer>
+    <div class="footer">
       このサイトをご覧いただきありがとうございます。<br>
-      &copy; <span id="year"></span> 非公式オンライン映画会<br>
-      ※違法な配信リンクや著作権侵害行為は一切行っておりません。
-    </footer>
+      &copy; <span id="year"></span> オンライン映画館（非公式） — 違法コンテンツ撲滅にご協力を。
+    </div>
   </main>
 
   <script>
-    // 年を自動挿入
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
