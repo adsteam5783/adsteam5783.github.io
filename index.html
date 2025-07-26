@@ -10,16 +10,44 @@
       background-color: #f4f4f8;
       color: #333;
       margin: 0;
-      padding: 2em;
     }
+    header {
+      background-color: #cc0000;
+      color: white;
+      padding: 1em 2em;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.6em;
+    }
+    header nav {
+      margin-top: 0.5em;
+    }
+    header nav a {
+      color: white;
+      margin-right: 1.5em;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    header nav a:hover {
+      text-decoration: underline;
+    }
+
     main {
       max-width: 800px;
       margin: 0 auto;
+      padding: 2em;
     }
-    h1 {
+
+    h2 {
       text-align: center;
       color: #cc0000;
     }
+
     .info, .note {
       background-color: #fff;
       border-left: 6px solid #cc0000;
@@ -28,36 +56,52 @@
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 1em;
     }
+
     th, td {
       padding: 0.8em;
       border-bottom: 1px solid #ddd;
       text-align: left;
     }
+
     th {
       background-color: #cc0000;
       color: #fff;
     }
+
     .cancel {
       color: #999;
       text-decoration: line-through;
     }
+
     footer {
       margin-top: 3em;
       text-align: center;
       font-size: 0.9em;
       color: #666;
+      padding-bottom: 2em;
     }
   </style>
 </head>
 <body>
 
+  <header>
+    <h1>🎥 オンライン映画会</h1>
+    <nav>
+      <a href="#">ホーム</a>
+      <a href="#">スケジュール</a>
+      <a href="#">Discord参加</a>
+      <a href="#">ガイドライン</a>
+    </nav>
+  </header>
+
   <main>
-    <h1>🎬 7月オンライン上映スケジュール（非公式）</h1>
+    <h2>7月オンライン上映スケジュール（非公式）</h2>
 
     <div class="info">
       <p>📍 1スクリーン制・定員50名・参加無料・チケット不要</p>
