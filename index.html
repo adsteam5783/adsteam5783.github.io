@@ -16,7 +16,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      height: 60vh;
       text-align: center;
       flex-direction: column;
     }
@@ -32,12 +32,49 @@
       font-size: 20px;
       color: #cccccc;
     }
+
+    .schedule {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .schedule h2 {
+      color: #00ffff;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .schedule ul {
+      list-style: none;
+      padding: 0;
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .schedule li {
+      margin: 10px 0;
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #aaaaaa;
+    }
   </style>
 </head>
 <body>
   <div class="center-message">
     <h1>🎬 スケジュール調整中</h1>
     <div class="sub-text">上映再開までしばらくお待ちください。</div>
+  </div>
+
+  <div class="schedule">
+    <h2>📅 本日 7月27日 上映予定</h2>
+    <ul>
+      <li>🕒 15:00　🎮『マイクロソフト・ザ・ムービー』</li>
+      <li>🕔 17:30　🎤『すとぷり 始まりの物語』</li>
+    </ul>
+    <div class="note">🎟 リクエストがあった場合は、順次追加予定です。</div>
   </div>
 </body>
 </html>
