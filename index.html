@@ -2,135 +2,121 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>2025年7月 オンライン上映スケジュール</title>
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 2rem;
-      line-height: 1.6;
-      color: #333;
+      font-family: 'Arial', sans-serif;
+      background: #1a1a1a;
+      color: #f0f0f0;
+      line-height: 1.8;
+      padding: 20px;
     }
-    header {
-      background: #222;
-      color: white;
-      padding: 1rem;
-      text-align: center;
+    h1, h2 {
+      color: #ffcc00;
     }
-    section {
-      background: white;
-      padding: 1.5rem;
-      margin-top: 1rem;
+    .section {
+      margin-bottom: 2rem;
+      background: #2a2a2a;
+      padding: 15px;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
-    h2 {
-      color: #444;
+    .cancelled {
+      text-decoration: line-through;
+      color: #ff6666;
     }
     ul {
-      list-style: none;
-      padding-left: 0;
+      padding-left: 1.2em;
     }
-    li {
-      margin-bottom: 0.5rem;
+    code {
+      background: #333;
+      padding: 2px 5px;
+      border-radius: 3px;
     }
-    .canceled {
-      text-decoration: line-through;
-      color: gray;
-    }
-    a.button {
-      display: inline-block;
-      margin-top: 1rem;
-      background: #5865f2;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .note {
-      color: red;
-      font-size: 0.95rem;
+    footer {
+      font-size: 0.8em;
+      color: #888;
+      margin-top: 3rem;
+      text-align: center;
     }
   </style>
 </head>
 <body>
+  <h1>📅 2025年7月 オンライン上映スケジュール（非公式）</h1>
 
-  <header>
-    <h1>📅 2025年7月 オンライン上映スケジュール（非公式）</h1>
-  </header>
-
-  <section>
+  <div class="section">
     <h2>📝 開催概要</h2>
     <ul>
       <li>🎥 オンライン1スクリーン制（定員50名）</li>
       <li>💸 完全無料・チケット不要・録画禁止</li>
       <li>📵 同じ映画の視聴は1日1回まで</li>
       <li>🧾 adsチーム提供／非公式開催</li>
+      <li>🎟 サブスク未加入の方も参加可能</li>
     </ul>
-  </section>
+  </div>
 
-  <section>
+  <div class="section">
     <h2>⚠️ 注意事項</h2>
-    <p>
-      現在上映中の映画、ホラー・バトル系の一部作品は主の判断で中止となることがあります。<br />
-      🎃 主はホラー耐性ゼロです（やさしい映画中心）。
-    </p>
-  </section>
-
-  <section>
-    <h2>🎬 上映スケジュール</h2>
-
     <ul>
-      <li><strong>✅ 7月27日（日）</strong></li>
+      <li>ホラー・バトル系映画は中止になる場合があります</li>
+      <li>主はホラー耐性ゼロのため、やさしい映画中心</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🎬 上映スケジュール</h2>
+    <ul>
+      <li>✅ <strong>7月27日（日）</strong></li>
       <ul>
         <li>🕛 12:00　🎤『すとぷり 始まりの物語』</li>
         <li>🕐 13:00　🎮『マイクラフト・ザ・ムービー』</li>
-        <li>🎉 MP4入手により急遽上映決定！</li>
       </ul>
-      <br/>
-      <li><strong>✅ 7月29日（火）</strong></li>
+      <li>✅ <strong>7月29日（火）</strong></li>
       <ul>
         <li>🕚 11:00　📥 リクエスト上映（当日発表）</li>
-        <li class="canceled">🕐 13:00　🔥『鬼滅の刃 列車編』 → 中止</li>
-        <li class="note">主が怖い映画を見られないため</li>
+        <li class="cancelled">🕐 13:00　🔥『鬼滅の刃 無限列車編』 → 中止</li>
       </ul>
-      <br/>
-      <li><strong>✅ 7月31日（木）</strong></li>
+      <li>✅ <strong>7月31日（木）</strong></li>
       <ul>
-        <li class="canceled">🕕 18:00　🛠️『技術開戦ゼロ』 → 中止</li>
-        <li class="note">戦闘シーンが怖いため</li>
+        <li class="cancelled">🕕 18:00　🛠️『技術開戦ゼロ』 → 中止</li>
       </ul>
     </ul>
-  </section>
+  </div>
 
-  <section>
+  <div class="section">
     <h2>🚪 参加方法</h2>
     <ul>
-      <li>🎟 Discord内「🎬・上映案内」チャンネルでリアクション 👍 をつける</li>
-      <li>🤖 定員（50名）を超えるとBotが自動締切（※Botのリアクションはカウント外）</li>
-      <li>⏰ 上映5分前に、参加リンクを専用チャンネルでお知らせ</li>
+      <li>🎟 Discord内「🎬・上映案内」チャンネルで👍リアクション</li>
+      <li>🤖 定員を超えるとBotが自動締切</li>
+      <li>📌 Botのリアクションはカウント対象外</li>
+      <li>⏰ 上映5分前にリンク案内</li>
     </ul>
-    <a href="https://discord.gg/your-server-code" class="button">🎫 Discordに参加する</a>
-  </section>
+  </div>
 
-  <section>
+  <div class="section">
     <h2>🚫 禁止事項</h2>
     <ul>
-      <li>❌ 録画・配信・スクリーンショット禁止</li>
-      <li>🚫 外部サイト・SNSへの内容拡散禁止</li>
-      <li>🛑 違反者はBAN／キック対象</li>
-      <li>📩 違反を見かけたらスタッフへDMしてください</li>
+      <li>❌ 録画・配信・スクショの禁止</li>
+      <li>🚫 SNSや外部サイトへの拡散禁止</li>
+      <li>🛑 違反者はBANまたはキック</li>
     </ul>
-  </section>
+  </div>
 
-  <section>
-    <h2>📢 その他</h2>
-    <p>今月は安心して楽しめる作品中心です。サブスクに加入していない人にも優しい上映会です。8月は中止作品の再上映も予定しています！</p>
-    <p>🎬 みんなでやさしい映画体験を楽しみましょう！</p>
-  </section>
+  <div class="section">
+    <h2>🛎️ 最新情報</h2>
+    <p>スケジュール変更は Discord「📢・お知らせ」チャンネルで告知します。</p>
+  </div>
 
+  <div class="section">
+    <h2>✅ 法的配慮について</h2>
+    <p>
+      本上映会は、正規のサブスクリプションサービスで取得した作品を非営利で上映しています。違法アップロード・再配布は一切行いません。
+      ご安心ください。
+    </p>
+  </div>
+
+  <footer>
+    🎬 みんなで安心して映画を楽しもう！ | adsチーム 2025
+  </footer>
 </body>
 </html>
