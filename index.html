@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>🎬 オンライン映画館 | 上映案内</title>
+  <title>🎬 オンラインToyシネマ | 上映案内</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -64,7 +64,7 @@
 </head>
 <body>
   <div class="center-message">
-    <h1>🎬 スケジュール調整中</h1>
+    <h1>🎬 Toyシネマ スケジュール調整中</h1>
     <div class="sub-text">上映再開までしばらくお待ちください。</div>
   </div>
 
@@ -76,5 +76,12 @@
     </ul>
     <div class="note">🎟 リクエストがあった場合は、順次追加予定です。</div>
   </div>
+
+  <script>
+    const today = new Date();
+    const options = { month: 'numeric', day: 'numeric' };
+    const formattedDate = today.toLocaleDateString('ja-JP', options);
+    document.querySelector('.schedule h2').textContent = `📅 本日 ${formattedDate} 上映予定`;
+  </script>
 </body>
 </html>
