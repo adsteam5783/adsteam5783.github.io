@@ -8,62 +8,36 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: #1e1e1e;
       color: #ffffff;
-      padding: 20px;
+      margin: 0;
+      padding: 0;
     }
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      background: #2a2a2a;
-      border-radius: 10px;
-      padding: 30px;
-    }
-    h1, h2 {
-      color: #ffd700;
-    }
-    .alert {
-      background-color: #ff4444;
-      border-left: 5px solid #ffcc00;
-      padding: 15px;
-      margin-top: 20px;
-    }
-    .update {
-      background-color: #333;
-      border-left: 5px solid #00bfff;
-      padding: 15px;
-      margin-top: 20px;
-    }
-    .footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #aaa;
+
+    .center-message {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       text-align: center;
+      flex-direction: column;
+    }
+
+    .center-message h1 {
+      font-size: 48px;
+      color: #ffd700;
+      margin: 0;
+    }
+
+    .sub-text {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #cccccc;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🎬 オンライン映画館</h1>
-
-    <div class="alert">
-      <h2>⚠️ 上映トラブルのお知らせ</h2>
-      <p>『すとぷり 始まりの物語』の上映中に、機材トラブルが発生いたしました。</p>
-      <p>ただいま復旧作業中のため、上映を<strong>約1時間遅らせて再開</strong>いたします。</p>
-      <p>ご不便をおかけして申し訳ございません。復旧し次第、再上映いたします。</p>
-    </div>
-
-    <div class="update">
-      <h2>🎤 次回上映予定（調整中）</h2>
-      <ul>
-        <li><strong>作品名：</strong>『すとぷり 始まりの物語』</li>
-        <li><strong>再開予定時間：</strong>19:00（目安）</li>
-        <li><strong>上映スクリーン：</strong>Screen 2</li>
-      </ul>
-      <p>最新の上映時間はDiscordの「🎬・上映案内」チャンネルをご確認ください。</p>
-    </div>
-
-    <div class="footer">
-      &copy; 2025 オンライン映画館（非公式）｜adsチーム提供
-    </div>
+  <div class="center-message">
+    <h1>🎬 スケジュール調整中</h1>
+    <div class="sub-text">上映再開までしばらくお待ちください。</div>
   </div>
 </body>
 </html>
