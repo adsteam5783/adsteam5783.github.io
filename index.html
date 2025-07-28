@@ -3,78 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Toyシネマ｜オンライン上映会</title>
+  <title>Toyシネマシティ</title>
   <style>
     body {
-      font-family: "Yu Gothic", sans-serif;
-      background-color: #fdfdfd;
-      color: #333;
       margin: 0;
-      padding: 20px;
+      font-family: "Yu Gothic", sans-serif;
+      color: #fff;
+      background: url('cinema-seats.jpg') no-repeat center bottom;
+      background-size: cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #000; /* fallback color */
     }
-    header {
+
+    .screen {
+      width: 80%;
+      height: 50vh;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 60px rgba(255, 255, 255, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #111;
+      font-size: 2em;
       text-align: center;
-      padding: 20px 0;
     }
-    h1 {
-      color: #cc0000;
-    }
-    section {
-      margin: 30px 0;
-    }
-    .schedule {
-      background-color: #ffe;
-      border-left: 5px solid #f90;
-      padding: 15px;
-    }
-    .highlight {
-      color: #c00;
-      font-weight: bold;
-    }
+
     footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #777;
-      margin-top: 50px;
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.8em;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>🎬 Toyシネマ オンライン上映会へようこそ！</h1>
-  <p>あなたの「観たい！」に応えるネット映画館</p>
-</header>
-
-<section>
-  <h2>📢 第一回上映会スケジュール</h2>
-  <div class="schedule">
-    <p><span class="highlight">16:00〜</span> すとぷり『始まりの物語』</p>
-    <p><span class="highlight">17:00〜</span> しんちゃもののけ姫</p>
-    <p><span class="highlight">18:00〜</span> 技術回線ゼロ（テスト上映）</p>
-    <p><span class="highlight">19:00〜</span> リクエスト枠（調整中）</p>
-    <p><span class="highlight">20:00〜</span> 上映終了</p>
+  <div class="screen">
+    🎬 本日上映：すとぷり「始まりの物語」
   </div>
-</section>
 
-<section>
-  <h2>🎟️ 参加方法</h2>
-  <ul>
-    <li>上映は Discord または YouTube限定公開リンクで行われます</li>
-    <li>参加リンクはDiscord「📢｜ご案内」チャンネルでお知らせ！</li>
-    <li>上映中はテキストチャットでみんなと感想共有OK！</li>
-  </ul>
-</section>
-
-<section>
-  <h2>📩 映画リクエスト受付中！</h2>
-  <p>「この映画が観たい！」というリクエストも大歓迎。<br>
-     Discordの「🎫｜リクエスト」チャンネルや、お問い合わせフォームからお気軽にどうぞ！</p>
-</section>
-
-<footer>
-  &copy; 2025 Toyシネマシティ | 公式サイト：adsteam5783.github.io
-</footer>
-
+  <footer>
+    &copy; 2025 Toyシネマシティ | 配信はDiscordとYouTube限定公開で
+  </footer>
 </body>
 </html>
