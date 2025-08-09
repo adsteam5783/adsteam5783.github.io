@@ -158,6 +158,30 @@
       from {opacity: 0;}
       to {opacity: 1;}
     }
+    /* 利用規約セクション */
+    #terms {
+      background:#1e1e1e;
+      color:#cceeff;
+      padding:20px;
+      border-radius:10px;
+      margin-top:40px;
+      font-size:0.9rem;
+      line-height:1.5;
+    }
+    #terms h2 {
+      color:#00ffff;
+      text-align:center;
+      letter-spacing:0.1em;
+      margin-bottom: 15px;
+    }
+    #terms h3 {
+      margin-top: 20px;
+      color: #00cccc;
+    }
+    #terms ul {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
   </style>
 </head>
 <body>
@@ -186,6 +210,41 @@
     <p>— 依頼者 レモンボット様</p>
   </section>
 
+  <section id="terms">
+    <h2>利用規約</h2>
+    <p>本サービスをご利用いただくにあたり、以下の利用規約を必ずお読みいただき、ご同意の上でご依頼ください。</p>
+
+    <h3>1. サービス内容</h3>
+    <p>動画編集依頼を受け付け、依頼内容に基づいて編集作業を行います。編集内容や納期については別途ご相談ください。</p>
+
+    <h3>2. 料金と支払い</h3>
+    <p>料金は依頼内容により異なります。支払い方法やタイミングについては事前にご案内いたします。</p>
+
+    <h3>3. 著作権・素材の提供</h3>
+    <p>編集に使用する動画や素材は、依頼者様ご自身が権利を有するものをご提供ください。第三者の権利を侵害する素材の使用は禁止します。</p>
+
+    <h3>4. 禁止事項</h3>
+    <ul>
+      <li>違法行為、公序良俗に反する内容の依頼</li>
+      <li>他者の権利を侵害する依頼</li>
+      <li>過度に暴力的、差別的、またはわいせつな内容の編集</li>
+    </ul>
+
+    <h3>5. 免責事項</h3>
+    <p>編集作業において発生したデータの損失や納期遅延等について、当方は一切の責任を負いかねます。</p>
+
+    <h3>6. キャンセル・返金</h3>
+    <p>作業開始後のキャンセルは原則お受けできません。返金については個別に対応いたします。</p>
+
+    <h3>7. 個人情報の取り扱い</h3>
+    <p>ご提供いただいた個人情報は、依頼の受付・連絡のみに使用し、第三者へ開示することはありません。</p>
+
+    <h3>8. ブラックリスト登録について</h3>
+    <p>過去に著しい迷惑行為や規約違反があった場合、ブラックリストに登録されることがあります。もし登録された場合は、お手数ですが当方までご連絡のうえ、意義申し立てを行ってください。適切に対応いたします。</p>
+
+    <p style="text-align:center; margin-top:20px; font-weight:bold;">以上に同意の上、ご依頼ください。</p>
+  </section>
+
   <script>
     const form = document.getElementById('requestForm');
     const thanks = document.getElementById('thanksMessage');
@@ -198,7 +257,3 @@
       }
       form.style.display = 'none';
       thanks.style.display = 'block';
-    });
-  </script>
-</body>
-</html>
