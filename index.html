@@ -14,6 +14,8 @@
       padding: 0 20px 40px;
       background: #121212;
       color: #eee;
+      position: relative;
+      overflow-x: hidden;
     }
     h1, h2 {
       text-align: center;
@@ -28,6 +30,8 @@
       box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
       border: 1px solid #00ffff;
       transition: opacity 0.3s ease;
+      z-index: 1;
+      position: relative;
     }
     label {
       display: block;
@@ -94,6 +98,8 @@
       animation: glow 2.5s ease-in-out infinite alternate;
       letter-spacing: 0.2em;
       user-select: none;
+      z-index: 1;
+      position: relative;
     }
     @keyframes glow {
       0% {
@@ -122,6 +128,8 @@
       border-radius: 10px;
       box-shadow: 0 0 10px #00ffff;
       color: #cceeff;
+      z-index: 1;
+      position: relative;
     }
     .review-section h2 {
       color: #00ffff;
@@ -153,6 +161,8 @@
       font-size: 1.3rem;
       user-select: none;
       animation: fadeIn 0.8s ease forwards;
+      z-index: 1;
+      position: relative;
     }
     @keyframes fadeIn {
       from {opacity: 0;}
@@ -167,6 +177,8 @@
       margin-top:40px;
       font-size:0.9rem;
       line-height:1.5;
+      z-index: 1;
+      position: relative;
     }
     #terms h2 {
       color:#00ffff;
@@ -182,9 +194,53 @@
       list-style-type: disc;
       margin-left: 20px;
     }
+
+    /* --- 右から左へのスライドイン・アウトアニメーション --- */
+    #introMessage {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(100%, -50%);
+      background: linear-gradient(90deg, #00ffff, #0077ff);
+      color: #121212;
+      font-weight: 700;
+      font-size: 2rem;
+      padding: 25px 40px;
+      border-radius: 15px;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
+      box-shadow: 0 0 20px #00ffff;
+      z-index: 9999;
+      animation: slideInOut 5s forwards;
+      white-space: nowrap;
+    }
+
+    @keyframes slideInOut {
+      0% {
+        opacity: 0;
+        transform: translate(100%, -50%);
+      }
+      20% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      80% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(150%, -50%);
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- 右からスライドインメッセージ -->
+  <div id="introMessage">最高の気に入っていただける作品を編集します。相談ください</div>
+
   <h1>動画編集依頼フォーム</h1>
   
   <div class="catchphrase">最高の仕上げにいたします</div>
@@ -257,6 +313,15 @@
       }
       thanks.style.display = 'block';
       form.style.display = 'none';
+    });
+
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const intro = document.getElementById('introMessage');
+        if (intro) {
+          intro.style.display = 'none';
+        }
+      }, 5000);
     });
   </script>
 </body>
