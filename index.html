@@ -1,305 +1,79 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>動画編集依頼フォーム</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
-  body {
-    font-family: 'Arial', sans-serif;
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 0 20px 40px;
-    background: #121212;
-    color: #eee;
-    position: relative;
-    overflow-x: hidden;
-  }
-  h1, h2 {
-    text-align: center;
-    color: #fff;
-    letter-spacing: 0.1em;
-    margin-bottom: 0.5em;
-  }
-  form {
-    background: #1e1e1e;
-    padding: 25px 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-    border: 1px solid #00ffff;
-    transition: opacity 0.3s ease;
-    z-index: 1;
-    position: relative;
-  }
-  label {
-    display: block;
-    margin-top: 20px;
-    font-weight: 700;
-    font-size: 1rem;
-    color: #00ffff;
-    letter-spacing: 0.05em;
-  }
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    width: 100%;
-    padding: 12px;
-    margin-top: 8px;
-    border: none;
-    border-radius: 6px;
-    background: #333;
-    color: #eee;
-    font-size: 1rem;
-    box-sizing: border-box;
-    transition: box-shadow 0.3s ease;
-  }
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  textarea:focus {
-    outline: none;
-    box-shadow: 0 0 8px #00ffff;
-    background: #222;
-  }
-  textarea {
-    resize: vertical;
-    height: 120px;
-  }
-  button {
-    margin-top: 30px;
-    background: linear-gradient(45deg, #00ffff, #0077ff);
-    color: #121212;
-    border: none;
-    padding: 15px 25px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
-    letter-spacing: 0.1em;
-    box-shadow: 0 0 15px #00ffff;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-  }
-  button:hover {
-    background: linear-gradient(45deg, #0077ff, #00ffff);
-    box-shadow: 0 0 25px #00ffff;
-    color: white;
-  }
-  .catchphrase {
-    font-family: 'Anton', sans-serif;
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 40px 0 30px 0;
-    background: linear-gradient(90deg, #00ffff, #0077ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 2.5s ease-in-out infinite alternate;
-    letter-spacing: 0.2em;
-    user-select: none;
-    z-index: 1;
-    position: relative;
-  }
-  @keyframes glow {
-    0% {
-      text-shadow:
-        0 0 5px #00ffff,
-        0 0 10px #00ffff,
-        0 0 20px #00ffff,
-        0 0 40px #0077ff,
-        0 0 80px #0077ff;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>自己紹介サイト - がふ</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background-color: #f0f0f0;
+      text-align: center;
     }
-    100% {
-      text-shadow:
-        0 0 10px #00ffff,
-        0 0 20px #00ffff,
-        0 0 30px #00ffff,
-        0 0 50px #0077ff,
-        0 0 100px #0077ff;
+    header {
+      background-color: #4a90e2;
+      padding: 40px 20px 80px;
+      position: relative;
+      color: white;
     }
-  }
-  .review-section {
-    background: #1e1e1e;
-    border: 2px solid #00ffff;
-    padding: 25px 30px;
-    margin-top: 50px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #00ffff;
-    color: #cceeff;
-    z-index: 1;
-    position: relative;
-  }
-  .review-section h2 {
-    color: #00ffff;
-    letter-spacing: 0.1em;
-    margin-bottom: 15px;
-  }
-  .review-section blockquote {
-    font-size: 1.3rem;
-    font-style: italic;
-    color: #99ddff;
-    margin: 0 0 15px 0;
-    border-left: 4px solid #00ffff;
-    padding-left: 15px;
-  }
-  .review-section p {
-    text-align: right;
-    font-weight: 700;
-    color: #00cccc;
-    margin: 0;
-    font-size: 1.1rem;
-  }
-  #thanksMessage {
-    display: none;
-    text-align: center;
-    margin-top: 30px;
-    color: #00ffff;
-    font-weight: 700;
-    font-size: 1.3rem;
-    user-select: none;
-    animation: fadeIn 0.8s ease forwards;
-    z-index: 1;
-    position: relative;
-  }
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-  #terms {
-    background:#1e1e1e;
-    color:#cceeff;
-    padding:20px;
-    border-radius:10px;
-    margin-top:40px;
-    font-size:0.9rem;
-    line-height:1.5;
-    z-index: 1;
-    position: relative;
-  }
-  #terms h2 {
-    color:#00ffff;
-    text-align:center;
-    letter-spacing:0.1em;
-    margin-bottom: 15px;
-  }
-  #terms h3 {
-    margin-top: 20px;
-    color: #00cccc;
-  }
-  #terms ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-
-  /* 右から左へのスライドイン・アウトアニメーション */
-  #introMessage {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(100%, -50%);
-    background: linear-gradient(90deg, #00ffff, #0077ff);
-    color: #121212;
-    font-weight: 700;
-    font-size: 2rem;
-    padding: 25px 40px;
-    border-radius: 15px;
-    text-align: left;
-    opacity: 0;
-    pointer-events: none;
-    user-select: none;
-    box-shadow: 0 0 20px #00ffff;
-    z-index: 9999;
-    animation: slideInOut 5s forwards;
-    white-space: nowrap;
-    line-height: 1.3;
-  }
-  #introMessage span {
-    display: block;
-    transform: rotate(-10deg);
-    margin-left: 10px;
-  }
-  #introMessage .subtext {
-    font-size: 1.3rem;
-    margin-top: 10px;
-    transform: rotate(0deg);
-  }
-  @keyframes slideInOut {
-    0% {
-      opacity: 0;
-      transform: translate(100%, -50%);
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
     }
-    20% {
-      opacity: 1;
-      transform: translate(-50%, -50%);
+    header h1 {
+      margin-top: 140px;
+      font-size: 2.2rem;
     }
-    80% {
-      opacity: 1;
-      transform: translate(-50%, -50%);
+    main {
+      max-width: 600px;
+      margin: -60px auto 40px;
+      background: white;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      text-align: left;
     }
-    100% {
-      opacity: 0;
-      transform: translate(150%, -50%);
+    main section {
+      margin-bottom: 20px;
     }
-  }
-</style>
+    main h2 {
+      border-bottom: 2px solid #4a90e2;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-  <!-- 右からスライドインメッセージ -->
-  <div id="introMessage">
-    <span>最高の</span>
-    <span>気に入って</span>
-    <span>いただける</span>
-    <span>作品を</span>
-    <span>編集します。</span>
-    <span class="subtext">相談ください</span>
-  </div>
 
-  <h1>動画編集依頼フォーム</h1>
-  <div class="catchphrase">最高の仕上げにいたします</div>
+<header>
+  <img src="https://media.discordapp.net/attachments/1403312014507507743/1403687636043960342/bb341395-a20b-411b-bde9-6c9e8a50e026.png?ex=6898757b&amp;is=689723fb&amp;hm=27f7f274d841803fb34c4086ff3abbe43a93254082c3c7dad2914d974a161964&amp;=&amp;format=webp&amp;quality=lossless&amp;width=606&amp;height=644" alt="顔写真" />
+  <h1>がふ（Gafu）</h1>
+</header>
 
-  <form id="requestForm" novalidate>
-    <label for="name">お名前</label>
-    <input type="text" id="name" name="name" required />
-
-    <label for="email">メールアドレス</label>
-    <input type="email" id="email" name="email" required />
-
-    <label for="details">動画編集の内容・希望</label>
-    <textarea id="details" name="details" placeholder="どんな編集を希望していますか？" required></textarea>
-
-    <button type="submit">送信する</button>
-  </form>
-
-  <div id="thanksMessage">送信ありがとうございました！</div>
-
-  <section class="review-section">
-    <h2>お客様の声</h2>
-    <blockquote>神編集これからもたのみたい</blockquote>
-    <p>— 依頼者 レモンボット様</p>
+<main>
+  <section>
+    <h2>自己紹介</h2>
+    <p>こんにちは！高校生のがふです。パソコンやプログラミングが好きで、将来はITエンジニアを目指しています。</p>
   </section>
-
-  <section id="terms">
-    <h2>利用規約</h2>
-    <p>本サービスをご利用いただくにあたり、以下の利用規約を必ずお読みいただき、ご同意の上でご依頼ください。</p>
-
-    <h3>1. サービス内容</h3>
-    <p>動画編集依頼を受け付け、依頼内容に基づいて編集作業を行います。編集内容や納期については別途ご相談ください。</p>
-
-    <h3>2. 料金と支払い</h3>
-    <p>料金は依頼内容により異なります。支払い方法やタイミングについては事前にご案内いたします。</p>
-
-    <h3>3. 著作権・素材の提供</h3>
-    <p>編集に使用する動画や素材は、依頼者様ご自身が権利を有するものをご提供ください。第三者の権利を侵害する素材の使用は禁止します。</p>
-
-    <h3>4. 禁止事項</h3>
+  <section>
+    <h2>スキル</h2>
     <ul>
-      <li>違法行為、公序良俗に反する内容の依頼</li>
-      <li>他者の権利を侵害する依頼</li>
-      <li>過度に暴力的、差別的、またはわいせつな内容の編集</li>
+      <li>HTML / CSS / JavaScript</li>
+      <li>Python / Java</li>
+      <li>サーバー構築やプログラムの仕組みを勉強中</li>
     </ul>
+  </section>
+</main>
 
-    <h3>5. 免責事項</h3>
-    <p>編集作業において発生したデータの損失や納期遅延等について、当方は一切の責任を負いかねます。</p>
-
-    <h3>6. キャンセル・返金</h3>
-    <p>作業開始後のキャンセルは原則お受けできません。返金については個別に対応いたします。</
+</body>
+</html>
