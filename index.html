@@ -1,1 +1,114 @@
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>動画編集依頼フォーム</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 0 20px;
+      background: #f9f9f9;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 5px #ccc;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    /* キャッチコピー */
+    .catchphrase {
+      text-align: center;
+      color: #28a745;
+      margin: 30px 0 20px 0;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+    /* レビューセクション */
+    .review-section {
+      background: #fffbe6;
+      border: 2px solid #ffeb3b;
+      padding: 20px;
+      margin-top: 40px;
+      border-radius: 8px;
+    }
+    .review-section blockquote {
+      font-size: 18px;
+      font-style: italic;
+      color: #555;
+      margin: 0 0 10px 0;
+    }
+    .review-section p {
+      text-align: right;
+      font-weight: bold;
+      color: #333;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>動画編集依頼フォーム</h1>
+  
+  <div class="catchphrase">最高の仕上げにいたします</div>
+
+  <form action="/submit-request" method="POST">
+    <label for="name">お名前</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="email">メールアドレス</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="details">動画編集の内容・希望</label>
+    <textarea id="details" name="details" placeholder="どんな編集を希望していますか？" required></textarea>
+
+    <button type="submit">送信する</button>
+  </form>
+
+  <section class="review-section">
+    <h2>お客様の声</h2>
+    <blockquote>神編集これからもたのみたい</blockquote>
+    <p>— 依頼者 レモンボット様</p>
+  </section>
+</body>
+</html>
