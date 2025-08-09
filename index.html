@@ -3,104 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>自己紹介サイト - ガフ</title>
+  <title>ネット指名手配一覧</title>
   <style>
-    /* 背景画像を全画面に */
+    /* 背景画像＆オーバーレイ */
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      /* 好きな背景画像URLに置き換えてください */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #eee;
+      text-align: center;
       background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
       background-size: cover;
-      color: white;
-      text-align: center;
+      position: relative;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      overflow-x: hidden;
     }
-    /* 半透明の黒いオーバーレイで読みやすく */
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(17, 17, 17, 0.75);
       z-index: -1;
     }
 
-    header {
-      padding: 40px 20px 120px;
-      position: relative;
-      color: white;
-      flex-shrink: 0;
-    }
-    header img {
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-    }
-    header h1 {
-      margin-top: 140px;
-      font-size: 2.8rem;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-    }
-    main {
-      max-width: 600px;
-      margin: -80px auto 40px;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 30px 40px;
-      border-radius: 16px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.7);
-      text-align: left;
-      color: #f0f0f0;
-      flex-grow: 1;
-    }
-    main section {
+    h1 {
       margin-bottom: 30px;
+      color: #e74c3c;
+      text-shadow: 0 0 10px #e74c3c;
+      font-weight: 900;
+      font-size: 3rem;
     }
-    main h2 {
-      border-bottom: 3px solid #4a90e2;
-      padding-bottom: 8px;
-      margin-bottom: 15px;
-      color: #aaddff;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    input[type="text"] {
+      padding: 12px 15px;
+      width: 320px;
+      max-width: 90vw;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 30px;
+      outline: none;
+      box-shadow: 0 0 12px #e74c3c;
+      background: #222;
+      color: #eee;
+      transition: box-shadow 0.3s ease;
     }
-    main p, main ul {
-      font-size: 1.1rem;
-      line-height: 1.6;
+    input[type="text"]:focus {
+      box-shadow: 0 0 20px #e74c3c;
     }
-    main ul li {
+    .wanted-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto 40px;
+    }
+    .wanted-card {
+      background: #222;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 0 15px #e74c3c;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+    .wanted-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px #e74c3c;
+    }
+    .wanted-photo {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 3px solid #e74c3c;
+    }
+    .wanted-name {
+      font-size: 1.5rem;
+      font-weight: bold;
       margin-bottom: 8px;
+      color: #e74c3c;
+      text-shadow: 0 0 6px #b92b2b;
+    }
+    .wanted-desc {
+      font-size: 1rem;
+      line-height: 1.4;
+      color: #ccc;
+      min-height: 60px;
+      text-shadow: 0 0 3px #111;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="https://media.discordapp.net/attachments/1403312014507507743/1403687636043960342/bb341395-a20b-411b-bde9-6c9e8a50e026.png?ex=6898757b&amp;is=689723fb&amp;hm=27f7f274d841803fb34c4086ff3abbe43a93254082c3c7dad2914d974a161964&amp;=&amp;format=webp&amp;quality=lossless&amp;width=606&amp;height=644" alt="顔写真" />
-  <h1>がふ（Gafu）</h1>
-</header>
+<h1>ネット指名手配一覧</h1>
 
-<main>
-  <section>
-    <h2>自己紹介</h2>
-    <p>こんにちは！高校生のガフです。パソコンやプログラミングが好きで、将来はITエンジニアを目指しています。</p>
-  </section>
-  <section>
-    <h2>スキル</h2>
-    <ul>
-      <li>HTML / CSS / JavaScript</li>
-      <li>Python / Java</li>
-      <li>サーバー構築やプログラムの仕組みを勉強中</li>
-    </ul>
-  </section>
-</main>
+<input type="text" id="searchInput" placeholder="名前で検索" autocomplete="off" />
+
+<div class="wanted-list" id="wantedList">
+  <!-- カードはJSで生成 -->
+</div>
+
+<script>
+  const wantedPeople = [
+    {
+      name: "山田 太郎",
+      photo: "https://randomuser.me/api/portraits/men/11.jpg",
+      description: "詐欺事件に関与。顔写真は典型的な日本人男性。注意してください。"
+    },
+    {
+      name: "佐藤 花子",
+      photo: "https://randomuser.me/api/portraits/women/22.jpg",
+      description: "重要参考人。複数の事件に関わった疑いあり。"
+    },
+    {
+      name: "鈴木 一郎",
+      photo: "https://randomuser.me/api/portraits/men/33.jpg",
+      description: "詐欺グループのリーダーと疑われています。"
+    },
+    {
+      name: "田中 美咲",
+      photo: "https://randomuser.me/api/portraits/women/44.jpg",
+      description: "詐欺の共犯者として捜査中。情報提供求む。"
+    }
+  ];
+
+  const wantedList = document.getElementById('wantedList');
+  const searchInput = document.getElementById('searchInput');
+
+  function renderList(filter = '') {
+    wantedList.innerHTML = '';
+    const filtered = wantedPeople.filter(p => p.name.includes(filter));
+    if(filtered.length === 0) {
+      wantedList.innerHTML = '<p>該当する人物がいません。</p>';
+      return;
+    }
+    filtered.forEach(person => {
+      const card = document.createElement('div');
+      card.className = 'wanted-card';
+      card.innerHTML = `
+        <img class="wanted-photo" src="${person.photo}" alt="${person.name}" />
+        <div class="wanted-name">${person.name}</div>
+        <div class="wanted-desc">${person.description}</div>
+      `;
+      wantedList.appendChild(card);
+    });
+  }
+
+  searchInput.addEventListener('input', e => {
+    renderList(e.target.value.trim());
+  });
+
+  // 初期表示
+  renderList();
+</script>
 
 </body>
 </html>
