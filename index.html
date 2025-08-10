@@ -17,9 +17,25 @@
       padding: 20px;
       text-align: center;
       border-radius: 5px;
+      position: relative;
     }
     h1 {
       margin: 0;
+    }
+    .alert {
+      background-color: #d9534f;
+      color: white;
+      font-weight: bold;
+      padding: 15px 20px;
+      text-align: center;
+      border-radius: 5px;
+      margin: 20px 0;
+      box-shadow: 0 0 10px rgba(217, 83, 79, 0.7);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
     section {
       background: white;
@@ -52,6 +68,10 @@
     <p>危険なDiscordボットと荒らし行為の情報を収集・共有します</p>
   </header>
 
+  <div class="alert">
+    注意！現在スパムボットが流行しています。十分に警戒してください。
+  </div>
+
   <section>
     <h2>危険なボットの種類</h2>
     <ul>
@@ -59,6 +79,7 @@
       <li><span class="danger">フィッシングボット：</span>ユーザー情報を盗むリンクを送信します。</li>
       <li><span class="danger">マルウェア配布ボット：</span>有害なファイルやリンクを配布します。</li>
       <li><span class="danger">なりすましボット：</span>管理者や信頼人物に成りすまして悪意を働きます。</li>
+      <li><span class="danger">DM大量スパムボット：</span>複数（例：9000個）のボットを使い、一斉にDMで大量のスパムを送信します。</li>
     </ul>
   </section>
 
