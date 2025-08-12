@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<title>動画再生</title>
-<style>
-  video {
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    background: black;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>動画自動再生サンプル</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    iframe {
+      border: none;
+      width: 80vw;
+      height: 45vw; /* 16:9 */
+      max-width: 960px;
+      max-height: 540px;
+    }
+  </style>
 </head>
 <body>
-  <video
-    autoplay
-    muted
-    playsinline
-    controlsList="nodownload nofullscreen noremoteplayback"
-    disablePictureInPicture
-    oncontextmenu="return false;"
-  >
-    <source src="https://drive.google.com/uc?export=download&id=1-7f4NlYfBnEKK239EZvItrP1v31rZXtB" type="video/mp4" />
-    お使いのブラウザは動画タグに対応していません。
-  </video>
+  <iframe 
+    src="https://drive.google.com/file/d/1-7f4NlYfBnEKK239EZvItrP1v31rZXtB/preview?autoplay=1&muted=1" 
+    allow="autoplay" 
+    allowfullscreen
+    controlsList="nodownload"
+  ></iframe>
 </body>
 </html>
