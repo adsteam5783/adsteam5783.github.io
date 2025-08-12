@@ -12,76 +12,33 @@
       margin: 0;
       padding: 0;
     }
-    header {
-      background-color: #0078d7;
-      padding: 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-    nav {
-      background-color: #252526;
+
+    /* 動画オーバーレイ */
+    #introVideoContainer {
+      position: fixed;
+      inset: 0;
+      background: black;
+      z-index: 9999;
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 15px;
-      padding: 15px 0;
     }
-    nav button {
-      background-color: #3a3d41;
-      border: none;
-      padding: 10px 20px;
-      color: #eee;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    nav button:hover {
-      background-color: #0078d7;
-    }
-    main {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
-    }
-    section {
-      margin-bottom: 40px;
-    }
-    h2 {
-      border-bottom: 2px solid #0078d7;
-      padding-bottom: 8px;
-    }
-    pre {
-      background-color: #252526;
-      padding: 15px;
-      border-radius: 5px;
-      overflow-x: auto;
-      color: #dcdcdc;
-    }
-    code {
-      font-family: Consolas, monospace;
-      font-size: 0.9rem;
-    }
-    footer {
-      text-align: center;
-      padding: 15px;
-      font-size: 0.8rem;
-      color: #888;
-      background-color: #1e1e1e;
-      border-top: 1px solid #333;
-    }
-    /* 注意喚起用スタイル */
-    #warning {
-      background-color: #8b0000;
-      color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 40px;
+    #introVideo {
+      max-width: 100%;
+      max-height: 100%;
     }
   </style>
 </head>
 <body>
+  <!-- 動画オーバーレイ -->
+  <div id="introVideoContainer">
+    <video id="introVideo" autoplay>
+      <source src="intro.mp4" type="video/mp4">
+      お使いのブラウザは動画タグに対応していません。
+    </video>
+  </div>
+
+  <!-- ↓ ここから元のホームページ内容 ↓ -->
   <header>
     <h1>Discord Bot 学習サイト</h1>
     <p>初心者向けのDiscord Bot開発入門とコード例</p>
@@ -98,118 +55,39 @@
   <main>
     <section id="intro" style="display:block;">
       <h2>はじめに</h2>
-      <p>このサイトは、Discord Botを初めて作る人向けの学習サイトです。基本的なセットアップ方法から、簡単なコード例までわかりやすく説明しています。</p>
-      <ul>
-        <li>Botアカウントの作成</li>
-        <li>開発環境の準備</li>
-        <li>簡単なコマンドの作り方</li>
-        <li>Botの公開方法</li>
-      </ul>
-      <p style="color:#ffcc00; font-weight:bold; margin-top: 1em;">
-        ※ このサイトは順次更新していきます。最新情報をお楽しみに！
-      </p>
-    </section>
-
-    <section id="warning" style="display:block;">
-      <h2>⚠️ 注意喚起 ⚠️</h2>
-      <p>
-        最近、Discord Botや関連サイトで「認証」を理由にユーザーのメールアドレスを不正に取得し、管理者に送信する事件が多発しています。<br>
-        不審な認証要求には絶対に応じないでください。<br>
-        また、BotやサイトのURLをよく確認し、信頼できるものかどうか慎重に判断しましょう。<br>
-        個人情報は大切に扱い、怪しいメッセージやリンクには注意してください。
-      </p>
+      <p>このサイトは、Discord Botを初めて作る人向けの学習サイトです。</p>
     </section>
 
     <section id="js" style="display:none;">
       <h2>JavaScript (discord.js) 入門</h2>
       <p>Node.jsとdiscord.jsライブラリを使ったBot作成の基本コード例です。</p>
-      <pre><code>// index.js
-const { Client, GatewayIntentBits } = require('discord.js');
-require('dotenv').config();
-
-const client = new Client({
-  intents: [
-    GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent
-  ]
-});
-
-client.once('ready', () => {
-  console.log(`Logged in as ${client.user.tag}`);
-});
-
-client.on('messageCreate', message => {
-  if (message.author.bot) return;
-  if (message.content === '!ping') {
-    message.reply('Pong!');
-  }
-});
-
-client.login(process.env.BOT_TOKEN);
-</code></pre>
-    </section>
-
-    <section id="python" style="display:none;">
-      <h2>Python (discord.py / py-cord) 入門</h2>
-      <p>Pythonで作るDiscord Botのシンプルなサンプルコードです。</p>
-      <pre><code># bot.py
-import os
-from discord import Client
-from dotenv import load_dotenv
-
-load_dotenv()
-TOKEN = os.getenv('BOT_TOKEN')
-
-client = Client()
-
-@client.event
-async def on_ready():
-    print(f'Logged in as {client.user}')
-
-@client.event
-async def on_message(message):
-    if message.author.bot:
-        return
-    if message.content == '!ping':
-        await message.channel.send('Pong!')
-
-client.run(TOKEN)
-</code></pre>
-    </section>
-
-    <section id="deploy" style="display:none;">
-      <h2>デプロイ方法</h2>
-      <p>Botをインターネット上で動かすには、以下のようなサービスを使います。</p>
-      <ul>
-        <li>Replit（手軽で初心者向け）</li>
-        <li>Heroku（自動デプロイも可能）</li>
-        <li>VPSやクラウドサービス（GCP、AWSなど）</li>
-      </ul>
-      <p>環境変数やAPIトークンの管理には注意しましょう。</p>
-    </section>
-
-    <section id="links" style="display:none;">
-      <h2>参考リンク</h2>
-      <ul>
-        <li><a href="https://discord.com/developers/docs/intro" target="_blank" rel="noopener noreferrer">Discord Developer Portal (公式ドキュメント)</a></li>
-        <li><a href="https://discordjs.guide/" target="_blank" rel="noopener noreferrer">discord.js Guide</a></li>
-        <li><a href="https://github.com/Pycord-Development/pycord" target="_blank" rel="noopener noreferrer">py-cord (discord.py フォーク)</a></li>
-        <li><a href="https://replit.com/" target="_blank" rel="noopener noreferrer">Replit (オンライン実行環境)</a></li>
-      </ul>
     </section>
   </main>
 
   <footer>
-    <small>© 2025 Discord Bot 学習サイト - 学習用テンプレート</small>
+    <small>© 2025 Discord Bot 学習サイト</small>
   </footer>
 
   <script>
+    // セクション切り替え
     function showSection(id) {
       document.querySelectorAll('main section').forEach(section => {
         section.style.display = section.id === id ? 'block' : 'none';
       });
     }
+
+    // 動画が終わったらホームページを表示
+    const video = document.getElementById('introVideo');
+    const container = document.getElementById('introVideoContainer');
+    video.addEventListener('ended', () => {
+      container.style.display = 'none';
+    });
+
+    // ユーザーが途中でスキップできるようクリックで終了
+    container.addEventListener('click', () => {
+      video.pause();
+      container.style.display = 'none';
+    });
   </script>
 </body>
 </html>
