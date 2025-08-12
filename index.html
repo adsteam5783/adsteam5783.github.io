@@ -3,30 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>動画再生サンプル</title>
+  <title>動画配布</title>
   <style>
-    body {
-      margin: 0;
-      background-color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    body, html {
+      margin: 0; padding: 0; height: 100%;
+      background: #000;
+      overflow: hidden;
     }
     iframe {
       border: none;
-      width: 80vw;
-      height: 45vw; /* 16:9比率 */
-      max-width: 960px;
-      max-height: 540px;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none; /* クリック禁止 */
+      user-select: none;     /* テキスト選択禁止 */
     }
   </style>
 </head>
 <body>
-  <iframe 
-    src="https://drive.google.com/file/d/1-4wbyWk6FBjKLkYtARlyuQjx0XhThRcu/preview" 
-    allowfullscreen
+  <iframe
+    src="https://drive.google.com/file/d/1-4wbyWk6FBjKLkYtARlyuQjx0XhThRcu/preview?autoplay=1&mute=1"
     allow="autoplay"
+    allowfullscreen
+    controlsList="nodownload"
+    sandbox="allow-scripts allow-same-origin"
   ></iframe>
+
+  <script>
+    // 右クリック禁止
+    document.addEventListener('contextmenu', e => e.preventDefault());
+  </script>
 </body>
 </html>
