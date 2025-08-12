@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>動画自動再生サンプル</title>
+  <title>動画再生サンプル</title>
   <style>
     body {
       margin: 0;
@@ -16,7 +16,7 @@
     iframe {
       border: none;
       width: 80vw;
-      height: 45vw; /* 16:9 */
+      height: 45vw; /* 16:9比率 */
       max-width: 960px;
       max-height: 540px;
     }
@@ -24,10 +24,9 @@
 </head>
 <body>
   <iframe 
-    src="https://drive.google.com/file/d/1-7f4NlYfBnEKK239EZvItrP1v31rZXtB/preview?autoplay=1" 
-    allow="autoplay" 
+    src="https://drive.google.com/file/d/1-4wbyWk6FBjKLkYtARlyuQjx0XhThRcu/preview" 
     allowfullscreen
-    controlsList="nodownload"
+    allow="autoplay"
   ></iframe>
 </body>
 </html>
