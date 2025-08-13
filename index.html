@@ -1,1 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discord認証ボットのソースコード販売。パスワード認証とOAuth2でサーバー管理を強化。">
+    <meta name="keywords" content="Discord, 認証ボット, パスワード認証, サーバー管理, OAuth2, コード販売">
+    <title>認証ボットコード販売 | サーバー管理の未来</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #5865F2, #2f3136);
+        }
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3);
+        }
+        .btn-primary {
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            background-color: #4752C4;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .no-js {
+            display: none;
+        }
+        @media (scripting: none) {
+            .no-js {
+                display: block;
+                background-color: #ff4444;
+                color: white;
+                padding: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
+    <div class="no-js">
+        <p>JavaScriptが無効です。一部のアニメーションが動作しませんが、基本的なコンテンツは利用可能です。</p>
+    </div>
 
+    <header class="hero-bg py-20 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 animate-pulse">
+                認証ボットコード販売
+            </h1>
+            <p class="text-xl md:text-2xl mb-8">
+                Discordサーバー管理を次のレベルへ<br>
+                <span class="text-[#5865F2] font-semibold">パスワード認証＋OAuth2で安全かつ効率的に</span>
+            </p>
+            <a href="[サポートサーバー]" class="btn-primary inline-block bg-[#5865F2] text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg">
+                サポートサーバーで購入
+            </a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16">
+        <section id="overview" class="mb-16 text-center fade-in">
+            <h2 class="text-4xl font-bold text-[#5865F2] mb-6">認証ボットコードとは？</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto">
+                Discordサーバーのセキュリティを強化する認証ボットのソースコードを販売！パスワード認証とOAuth2を組み合わせ、ユーザーを安全に管理し、指定されたロールを自動付与します。
+                <span class="text-red-500 font-semibold">警告: パスワードは平文で送信・保存されます。</span>
+                <br>
+                <a href="[公式サイト]" class="text-[#5865F2] hover:underline">公式サイトで詳細を確認</a>
+            </p>
+        </section>
+
+        <section id="features" class="mb-16 fade-in">
+            <h2 class="text-4xl font-bold text-[#5865F2] mb-6 text-center">主な機能</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#5865F2] mb-2">/regist</h3>
+                    <p class="text-gray-400">
+                        パスワード入力後、OAuth2で認証。サーバーに参加し、ロールを自動付与。パスワードは平文でログに送信。
+                    </p>
+                </div>
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#5865F2] mb-2">/setlogdestination</h3>
+                    <p class="text-gray-400">
+                        認証ログ送信先とパスワードを設定。「オーナー」ロール専用。
+                    </p>
+                </div>
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#5865F2] mb-2">/infolookupsend</h3>
+                    <p class="text-gray-400">
+                        ユーザーIDから認証情報（パスワード含む）を確認。オーナー専用。
+                    </p>
+                </div>
+                <div class="feature-card bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold text-[#5865F2] mb-2">/bypass</h3>
+                    <p class="text-gray-400">
+                        認証をスキップしてロールを付与。オーナー専用。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="log-example" class="mb-16 fade-in">
+            <h2 class="text-4xl font-bold text-[#5865F2] mb-6 text-center">認証ログ例</h2>
+            <div class="bg-gray-800 p-6 rounded-lg max-w-2xl mx-auto">
+                <pre class="text-gray-300 text-sm">
+✅ 認証情報：
+ユーザー名: `ユーザー名#0000`
+ユーザーID: `ユーザーID`
+メール: `example@email.com`
+IP: `192.168.1.1`
+アイコンURL: https://cdn.discordapp.com/avatars/...
+アクセストークン: `xxxxxx...`
+リフレッシュトークン: `yyyyyy...`
+パスワード: `入力パスワード`
+日時: 2025-08-13 09:41:00 JST
+⚠️ 警告: パスワードは平文で送信・保存されています。認証ログ送信先チャンネルは必ずプライベートに設定してください。
+                </pre>
+            </div>
+        </section>
+
+        <section id="security" class="mb-16 fade-in">
+            <h2 class="text-4xl font-bold text-[#5865F2] mb-6 text-center">セキュリティに関する警告</h2>
+            <p class="text-red-500 font-semibold max-w-2xl mx-auto text-center">
+                認証ログとJSONファイルには、パスワード（平文）、アクセストークン、リフレッシュトークンが含まれます。これらは機密情報であり、公開チャンネルに送信すると重大なセキュリティリスクが生じます。
+                <br>
+                <strong>必須対策:</strong>
+                <ul class="list-disc list-inside text-gray-300 mt-4">
+                    <li><code>/setlogdestination</code>でプライベートチャンネルを設定。</li>
+                    <li>JSONファイルにアクセス制限（例：<code>chmod 600 *.json</code>）。</li>
+                    <li>Discordアカウントの2FAを有効化。</li>
+                </ul>
+                <br>
+                暗号化などのカスタマイズはサポートサーバーで相談可能。
+            </p>
+        </section>
+
+        <section id="purchase" class="mb-16 text-center fade-in">
+            <h2 class="text-4xl font-bold text-[#5865F2] mb-6">購入方法</h2>
+            <p class="text-gray-300 mb-6 max-w-xl mx-auto">
+                認証ボットのソースコードを購入して、サーバー管理を効率化！以下の手順でご購入ください。
+            </p>
+            <ol class="list-decimal list-inside text-gray-300 max-w-xl mx-auto text-left">
+                <li><strong>サポートサーバーに参加</strong>: <a href="[サポートサーバー]" class="text-[#5865F2] hover:underline">サポートサーバー</a>に参加し、開発者にDM。</li>
+                <li><strong>価格・詳細を確認</strong>: DMで価格やライセンスを案内。</li>
+                <li><strong>コード受け取り</strong>: 支払い後、ソースコード（zip）とセットアップ手順を提供。</li>
+                <li><strong>サポート</strong>: 導入やカスタマイズの質問はサポートサーバーで対応。</li>
+            </ol>
+            <a href="[サポートサーバー]" class="btn-primary inline-block bg-[#5865F2] text-white px-8 py-4 rounded-lg font-semibold text-lg shadow-lg mt-6">
+                今すぐ購入
+            </a>
+        </section>
+
+        <section id="why-buy" class="mb-16 text-center fade-in">
+            <h2 class="text-4xl font-bold text-[#5865F2] mb-6">なぜ購入する？</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto">
+                <strong>簡単導入</strong>: すぐに認証システムを構築。<br>
+                <strong>カスタマイズ性</strong>: Pythonベースで自由に改変可能。<br>
+                <strong>効率化</strong>: ロール自動付与でサーバー管理を効率化。<br>
+                <strong>サポート</strong>: サポートサーバーで専任開発者が対応。
+            </p>
+        </section>
+    </main>
+
+    <footer class="bg-gray-950 py-8 text-center">
+        <div class="container mx-auto px-4">
+            <p class="text-gray-400">&copy; 2025 認証ボット. All rights reserved.</p>
+            <p class="text-gray-500 mt-2">Built with 🔥 for Discord communities.</p>
+            <p class="text-gray-500 mt-2">
+                <a href="[公式サイト]" class="text-[#5865F2] hover:underline">公式サイト</a> |
+                <a href="[サポートサーバー]" class="text-[#5865F2] hover:underline">サポートサーバー</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            elements.forEach(element => observer.observe(element));
+        });
+    </script>
+</body>
+</html>
