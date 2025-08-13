@@ -3,17 +3,133 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>背景動画音あり再生</title>
+<title>SecureLink Bot - 公式サイト</title>
 <style>
-  body, html { margin:0; padding:0; height:100%; overflow:hidden; }
-  #bg-video { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1; }
+    /* 全体設定 */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html { height: 100%; font-family: 'Segoe UI', sans-serif; color: #fff; overflow-x: hidden; }
+
+    /* 背景動画 */
+    #bg-video {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        filter: brightness(0.5);
+    }
+
+    /* コンテンツ中央配置 */
+    .container {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    h1 {
+        font-size: 4em;
+        color: #00bfff;
+        text-shadow: 0 0 20px rgba(0,191,255,0.7);
+        margin-bottom: 10px;
+    }
+
+    p.lead {
+        font-size: 1.3em;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+        color: #e0e0e0;
+    }
+
+    h2 {
+        color: #ff8c00;
+        font-size: 2em;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(255,140,0,0.5);
+    }
+
+    .feature {
+        background: rgba(26,28,43,0.85);
+        border-radius: 15px;
+        padding: 25px 20px;
+        margin: 20px auto;
+        max-width: 750px;
+        text-align: left;
+        box-shadow: 0 0 20px rgba(0,191,255,0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 30px rgba(0,191,255,0.6);
+    }
+    .feature ul { list-style: none; }
+    .feature li { margin: 15px 0; font-size: 1.1em; }
+
+    .button-container a {
+        display: inline-block;
+        margin: 15px;
+        padding: 15px 40px;
+        font-size: 1.1em;
+        font-weight: bold;
+        text-decoration: none;
+        border-radius: 12px;
+        transition: 0.3s;
+        box-shadow: 0 0 15px rgba(0,191,255,0.4);
+    }
+    .buy-button {
+        background: linear-gradient(135deg, #28a745, #1e7e34);
+        color: #fff;
+    }
+    .buy-button:hover {
+        background: linear-gradient(135deg, #1e7e34, #28a745);
+        box-shadow: 0 0 25px rgba(40,167,69,0.6);
+    }
+
+    .note {
+        margin-top: 25px;
+        font-size: 0.95em;
+        color: #ff6347;
+        text-shadow: 0 0 5px rgba(255,99,71,0.6);
+    }
 </style>
 </head>
 <body>
-  <video id="bg-video" loop>
-    <source src="background.mp4" type="video/mp4">
-    お使いのブラウザは動画再生に対応していません。
-  </video>
+    <!-- 背景動画 -->
+    <video id="bg-video" loop>
+        <source src="background.mp4" type="video/mp4">
+        お使いのブラウザは動画再生に対応していません。
+    </video>
+
+    <div class="container">
+        <h1>SecureLink Bot</h1>
+        <p class="lead">最先端の Discord 認証ボット。<br>安全性と利便性を同時に実現し、サーバー運営を革新的にサポートします。</p>
+
+        <h2>💎 主な機能</h2>
+        <div class="feature">
+            <ul>
+                <li>✅ シンプルなワンクリック認証</li>
+                <li>✅ メンバーの自動ロール付与</li>
+                <li>✅ 安全な OAuth2 認証対応</li>
+                <li>✅ IP とユーザー情報をログに記録可能</li>
+                <li>✅ 導入後すぐに運用可能</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <p>
+                SecureLink Bot は、セキュリティと利便性を兼ね備えた公式認証ボットです。<br>
+                認証済みメンバーのみアクセス可能なチャンネルを簡単に作成でき、サーバー管理が圧倒的に効率化されます。<br>
+                セットアップ手順は購入者限定で提供しています。
+            </p>
+        </div>
+
+        <div class="button-container">
+            <a href="https://x.com/F1lNEWrund66256" class="buy-button" target="_blank">購入する（999円）</a>
+        </div>
+
+        <p class="note">※セットアップサポートは購入者限定です。</p>
+    </div>
 
 <script>
 window.addEventListener('click', () => {
