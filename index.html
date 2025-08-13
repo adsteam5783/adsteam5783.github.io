@@ -3,63 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>映画シネマサイト</title>
+    <title>ドメイン更新中</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; }
-        header { background-color: #333; color: white; padding: 20px; text-align: center; }
-        nav { background-color: #444; padding: 10px; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        main { padding: 20px; }
-        .movie-card { background-color: white; padding: 15px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); display: flex; align-items: center; }
-        .movie-card img { width: 120px; border-radius: 5px; margin-right: 20px; }
-        .movie-card h2 { margin: 0 0 10px 0; }
-        footer { background-color: #333; color: white; text-align: center; padding: 15px; margin-top: 20px; }
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #333;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>映画シネマサイト</h1>
-    </header>
-    <nav>
-        <a href="#">ホーム</a>
-        <a href="#">最新映画</a>
-        <a href="#">人気映画</a>
-        <a href="#">お問い合わせ</a>
-    </nav>
-    <main id="movie-list">
-        <!-- 上映中の映画がここに表示されます -->
-    </main>
-    <footer>
-        &copy; 2025 映画シネマサイト
-    </footer>
-
-    <script>
-        const movies = [
-            { title: "映画タイトル 1", release: "2025-08-10", img: "movie1.jpg", description: "これは映画1の簡単なあらすじです。" },
-            { title: "映画タイトル 2", release: "2025-08-20", img: "movie2.jpg", description: "これは映画2の簡単なあらすじです。" },
-            { title: "映画タイトル 3", release: "2025-09-01", img: "movie3.jpg", description: "これは映画3の簡単なあらすじです。" }
-        ];
-
-        const today = new Date();
-
-        const movieList = document.getElementById("movie-list");
-
-        movies.forEach(movie => {
-            const releaseDate = new Date(movie.release);
-            if (releaseDate <= today) { // 上映中作品のみ
-                const card = document.createElement("div");
-                card.className = "movie-card";
-                card.innerHTML = `
-                    <img src="${movie.img}" alt="${movie.title}">
-                    <div>
-                        <h2>${movie.title}</h2>
-                        <p>公開日: ${movie.release}</p>
-                        <p>${movie.description}</p>
-                    </div>
-                `;
-                movieList.appendChild(card);
-            }
-        });
-    </script>
+    <h1>ドメイン更新中</h1>
+    <p>ただいまサイトは更新作業中です。しばらくお待ちください。</p>
+    <div class="loader"></div>
 </body>
 </html>
