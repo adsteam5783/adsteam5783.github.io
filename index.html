@@ -1,131 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SecureLink Bot - 公式サイト</title>
-    <style>
-        /* 背景動画設定 */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Arial', sans-serif;
-            color: #f0f0f0;
-            overflow-x: hidden;
-        }
-        #bg-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-
-        /* コンテンツ */
-        .content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #00bfff;
-            font-size: 3em;
-            margin-bottom: 10px;
-        }
-        h2 {
-            color: #ff8c00;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        p {
-            max-width: 700px;
-            margin: 20px auto;
-            line-height: 1.6;
-            font-size: 1.1em;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            margin: 15px 0;
-            font-size: 1.1em;
-        }
-        .feature {
-            background-color: rgba(26,28,43,0.8);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 700px;
-            text-align: left;
-            box-shadow: 0 0 15px rgba(0,191,255,0.3);
-        }
-        .button-container {
-            margin-top: 40px;
-        }
-        .button-container a {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 35px;
-            font-size: 16px;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 10px;
-            transition: 0.3s;
-        }
-        .buy-button {
-            background-color: #28a745;
-            color: #fff;
-        }
-        .buy-button:hover {
-            background-color: #1e7e34;
-        }
-        .note {
-            margin-top: 20px;
-            font-size: 0.95em;
-            color: #ff6347;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>背景動画音あり再生</title>
+<style>
+  body, html { margin:0; padding:0; height:100%; overflow:hidden; }
+  #bg-video { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1; }
+</style>
 </head>
 <body>
-    <!-- 背景動画 -->
-    <video id="bg-video" autoplay muted loop>
-        <source src="background.mp4" type="video/mp4">
-        お使いのブラウザは動画再生に対応していません。
-    </video>
+  <video id="bg-video" loop>
+    <source src="background.mp4" type="video/mp4">
+    お使いのブラウザは動画再生に対応していません。
+  </video>
 
-    <div class="content">
-        <h1>SecureLink Bot</h1>
-        <p>最先端の Discord 認証ボット。あなたのサーバーの安全と利便性を同時に実現。</p>
-
-        <h2>💎 主な機能</h2>
-        <div class="feature">
-            <ul>
-                <li>✅ シンプルなワンクリック認証</li>
-                <li>✅ メンバーの自動ロール付与</li>
-                <li>✅ 安全な OAuth2 認証対応</li>
-                <li>✅ IP とユーザー情報をログに記録可能</li>
-                <li>✅ 導入後すぐに運用可能</li>
-            </ul>
-        </div>
-
-        <div class="feature">
-            <p>
-                SecureLink Bot は、セキュリティと利便性を兼ね備えたボットです。  
-                認証済みメンバーのみアクセスできるチャンネルを作成可能で、サーバー管理が簡単になります。  
-                セットアップ手順は購入者のみに提供しています。
-            </p>
-        </div>
-
-        <div class="button-container">
-            <a href="https://x.com/F1lNEWrund66256" class="buy-button" target="_blank">購入する（999円）</a>
-        </div>
-
-        <p class="note">※セットアップサポートは購入者限定です。</p>
-    </div>
+<script>
+window.addEventListener('click', () => {
+    const video = document.getElementById('bg-video');
+    video.play(); // クリックで音あり再生
+}, { once: true });
+</script>
 </body>
 </html>
