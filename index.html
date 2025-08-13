@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>プロフィールサイト - toy</title>
+  <title>toyショップ - ECサイト</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Montserrat&display=swap');
 
@@ -15,9 +15,26 @@
       background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: center;
       flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+      padding: 30px 0;
+      background: rgba(0, 255, 213, 0.1);
+      border-bottom: 2px solid #00ffd5;
+      box-shadow: 0 4px 20px rgba(0, 255, 213, 0.3);
+    }
+
+    header h1 {
+      font-family: 'Roboto Slab', serif;
+      font-size: 3rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 15px #00ffd5;
+      color: #00ffd5;
+      margin: 0;
     }
 
     .profile-container {
@@ -29,6 +46,7 @@
       max-width: 800px;
       width: 90%;
       align-items: center;
+      margin-top: 30px;
       margin-bottom: 30px;
     }
 
@@ -37,7 +55,7 @@
       padding-right: 30px;
     }
 
-    .profile-text h1 {
+    .profile-text h2 {
       font-family: 'Roboto Slab', serif;
       font-weight: 700;
       font-size: 2.2rem;
@@ -77,6 +95,7 @@
       font-size: 1rem;
       line-height: 1.6;
       border: 2px solid gold;
+      margin-bottom: 40px;
     }
 
     .sale-card h2 {
@@ -99,9 +118,13 @@
   </style>
 </head>
 <body>
+  <header>
+    <h1>💎 toyショップ 💎</h1>
+  </header>
+
   <div class="profile-container">
     <div class="profile-text">
-      <h1>toy, 中原哲太郎</h1>
+      <h2>toy, 中原哲太郎</h2>
       <p>
         年齢：非公開<br>
         趣味：ゲーム、プログラミング、音楽<br>
@@ -114,7 +137,7 @@
   </div>
 
   <div class="sale-card">
-    <h2>💎 激レア認証ボットコード 期間限定販売 💎</h2>
+    <h2>激レア認証ボットコード 期間限定販売</h2>
     <p>
       かつて私が開発・運用していた限定配布の認証ボットコードを、期間限定で販売いたします。<br>
       <strong>価格：</strong> 500円（特別価格）<br>
