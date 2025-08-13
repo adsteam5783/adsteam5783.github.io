@@ -1,88 +1,106 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>子供タイプリスト</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            padding: 30px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>子供タイプリスト スライド表示</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    overflow-x: hidden;
+}
 
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+h1 {
+    text-align: center;
+    margin: 30px 0;
+}
 
-        .grid-container {
-            display: flex;           /* 横並びにする */
-            flex-wrap: wrap;         /* 横幅オーバーしたら折り返す */
-            gap: 20px;
-            justify-content: center; /* 中央寄せ */
-        }
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    overflow: hidden;
+}
 
-        .card {
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            padding: 20px;
-            width: 220px;            /* 固定幅で横並び */
-            text-align: center;
-        }
+.carousel-track {
+    display: flex;
+    transition: transform 1s ease-in-out;
+}
 
-        .card img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
+.card {
+    flex: 0 0 100%; /* 1枚ずつ全幅表示 */
+    box-sizing: border-box;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
 
-        .card h2 {
-            margin: 10px 0 5px 0;
-            color: #444;
-            font-size: 18px;
-        }
+.card img {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
 
-        .card p {
-            font-size: 14px;
-            color: #666;
-        }
-    </style>
+.card h2 {
+    font-size: 22px;
+    margin: 10px 0 5px 0;
+}
+
+.card p {
+    font-size: 16px;
+    color: #666;
+}
+</style>
 </head>
 <body>
 
-    <h1>子供タイプリスト</h1>
+<h1>子供タイプリスト スライド</h1>
 
-    <div class="grid-container">
-        <!-- 子供1 -->
+<div class="carousel-container">
+    <div class="carousel-track">
+        <!-- 子役1 -->
         <div class="card">
-            <img src="https://media.discordapp.net/attachments/1403312014507507743/1403693173385068686/SPOILER_402883904_852476969852519_4631502010971770191_n.jpg?ex=689dc0a3&amp;is=689c6f23&amp;hm=2150d3e1451c275ef335928321047a858b98e38a7be02f650cd2d1d1ac8cad32&amp;=&amp;format=webp&amp;width=606&amp;height=644" 
-                 alt="中原哲太郎の画像">
+            <img src="<img src="https://media.discordapp.net/attachments/1403312014507507743/1403693173385068686/SPOILER_402883904_852476969852519_4631502010971770191_n.jpg?ex=689dc0a3&amp;is=689c6f23&amp;hm=2150d3e1451c275ef335928321047a858b98e38a7be02f650cd2d1d1ac8cad32&amp;=&amp;format=webp&amp;width=606&amp;height=644" alt="中原哲太郎">
             <h2>中原哲太郎</h2>
             <p>自己紹介：中原哲太郎です。こちらは子供タイプリストの一員です。</p>
         </div>
-
-        <!-- # ここに子供2を追加 -->
-        <!--
+        <!-- 子役2 -->
         <div class="card">
-            <img src="子供2の画像URL" alt="子供2の画像">
-            <h2>子供2の名前</h2>
-            <p>自己紹介：子供2の自己紹介をここに書きます。</p>
+            <img src="https://via.placeholder.com/600x600.png?text=子役2" alt="子役2">
+            <h2>子役2</h2>
+            <p>自己紹介：子役2の自己紹介です。</p>
         </div>
-        -->
-
-        <!-- # ここに子供3を追加 -->
-        <!--
+        <!-- 子役3 -->
         <div class="card">
-            <img src="子供3の画像URL" alt="子供3の画像">
-            <h2>子供3の名前</h2>
-            <p>自己紹介：子供3の自己紹介をここに書きます。</p>
+            <img src="https://via.placeholder.com/600x600.png?text=子役3" alt="子役3">
+            <h2>子役3</h2>
+            <p>自己紹介：子役3の自己紹介です。</p>
         </div>
-        -->
     </div>
+</div>
+
+<script>
+// カルーセルスライド用
+const track = document.querySelector('.carousel-track');
+const cards = document.querySelectorAll('.card');
+let index = 0;
+
+function slideNext() {
+    index++;
+    if(index >= cards.length) index = 0;
+    track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+// 3秒ごとに右にスライド
+setInterval(slideNext, 3000);
+</script>
 
 </body>
 </html>
