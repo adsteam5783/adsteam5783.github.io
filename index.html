@@ -5,10 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureLink Bot - 公式サイト</title>
     <style>
-        body {
+        /* 背景動画設定 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
             font-family: 'Arial', sans-serif;
-            background-color: #0f111a;
             color: #f0f0f0;
+            overflow-x: hidden;
+        }
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* コンテンツ */
+        .content {
+            position: relative;
+            z-index: 1;
             text-align: center;
             padding: 50px;
         }
@@ -37,7 +56,7 @@
             font-size: 1.1em;
         }
         .feature {
-            background-color: #1a1c2b;
+            background-color: rgba(26,28,43,0.8);
             border-radius: 15px;
             padding: 20px;
             margin: 20px auto;
@@ -73,33 +92,40 @@
     </style>
 </head>
 <body>
-    <h1>SecureLink Bot</h1>
-    <p>最先端の Discord 認証ボット。あなたのサーバーの安全と利便性を同時に実現。</p>
+    <!-- 背景動画 -->
+    <video id="bg-video" autoplay muted loop>
+        <source src="background.mp4" type="video/mp4">
+        お使いのブラウザは動画再生に対応していません。
+    </video>
 
-    <h2>💎 主な機能</h2>
+    <div class="content">
+        <h1>SecureLink Bot</h1>
+        <p>最先端の Discord 認証ボット。あなたのサーバーの安全と利便性を同時に実現。</p>
 
-    <div class="feature">
-        <ul>
-            <li>✅ シンプルなワンクリック認証</li>
-            <li>✅ メンバーの自動ロール付与</li>
-            <li>✅ 安全な OAuth2 認証対応</li>
-            <li>✅ IP とユーザー情報をログに記録可能</li>
-            <li>✅ 導入後すぐに運用可能</li>
-        </ul>
+        <h2>💎 主な機能</h2>
+        <div class="feature">
+            <ul>
+                <li>✅ シンプルなワンクリック認証</li>
+                <li>✅ メンバーの自動ロール付与</li>
+                <li>✅ 安全な OAuth2 認証対応</li>
+                <li>✅ IP とユーザー情報をログに記録可能</li>
+                <li>✅ 導入後すぐに運用可能</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <p>
+                SecureLink Bot は、セキュリティと利便性を兼ね備えたボットです。  
+                認証済みメンバーのみアクセスできるチャンネルを作成可能で、サーバー管理が簡単になります。  
+                セットアップ手順は購入者のみに提供しています。
+            </p>
+        </div>
+
+        <div class="button-container">
+            <a href="https://x.com/F1lNEWrund66256" class="buy-button" target="_blank">購入する（999円）</a>
+        </div>
+
+        <p class="note">※セットアップサポートは購入者限定です。</p>
     </div>
-
-    <div class="feature">
-        <p>
-            SecureLink Bot は、セキュリティと利便性を兼ね備えたボットです。  
-            認証済みメンバーのみアクセスできるチャンネルを作成可能で、サーバー管理が簡単になります。  
-            セットアップ手順は購入者のみに提供しています。
-        </p>
-    </div>
-
-    <div class="button-container">
-        <a href="https://x.com/F1lNEWrund66256" class="buy-button" target="_blank">購入する（999円）</a>
-    </div>
-
-    <p class="note">※セットアップサポートは購入者限定です。</p>
 </body>
 </html>
