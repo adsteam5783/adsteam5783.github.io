@@ -18,11 +18,10 @@
         }
 
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            display: flex;           /* 横並びにする */
+            flex-wrap: wrap;         /* 横幅オーバーしたら折り返す */
             gap: 20px;
-            max-width: 1000px;
-            margin: auto;
+            justify-content: center; /* 中央寄せ */
         }
 
         .card {
@@ -30,6 +29,7 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
             padding: 20px;
+            width: 220px;            /* 固定幅で横並び */
             text-align: center;
         }
 
@@ -57,33 +57,29 @@
     <h1>子供タイプリスト</h1>
 
     <div class="grid-container">
-        <!-- 子役1 -->
+        <!-- 子供1 -->
         <div class="card">
-            <img src="子役1の画像URL" alt="子役1の画像">
-            <h2>子役1</h2>
-            <p>自己紹介：子役1です。</p>
+            <img src="https://media.discordapp.net/attachments/1403312014507507743/1403693173385068686/SPOILER_402883904_852476969852519_4631502010971770191_n.jpg" 
+                 alt="中原哲太郎の画像">
+            <h2>中原哲太郎</h2>
+            <p>自己紹介：中原哲太郎です。こちらは子供タイプリストの一員です。</p>
         </div>
 
-        <!-- こやく1 -->
-        <div class="card">
-            <img src="こやく1の画像URL" alt="こやく1の画像">
-            <h2>こやく1</h2>
-            <p>自己紹介：こやく1です。</p>
-        </div>
-
-        <!-- こやく2 -->
-        <div class="card">
-            <img src="こやく2の画像URL" alt="こやく2の画像">
-            <h2>こやく2</h2>
-            <p>自己紹介：こやく2です。</p>
-        </div>
-
-        <!-- # ここに新しい子役やこやくを追加 -->
+        <!-- # ここに子供2を追加 -->
         <!--
         <div class="card">
-            <img src="新しい子供の画像URL" alt="新しい子供の画像">
-            <h2>新しい子供の名前</h2>
-            <p>自己紹介：ここに自己紹介を書きます。</p>
+            <img src="子供2の画像URL" alt="子供2の画像">
+            <h2>子供2の名前</h2>
+            <p>自己紹介：子供2の自己紹介をここに書きます。</p>
+        </div>
+        -->
+
+        <!-- # ここに子供3を追加 -->
+        <!--
+        <div class="card">
+            <img src="子供3の画像URL" alt="子供3の画像">
+            <h2>子供3の名前</h2>
+            <p>自己紹介：子供3の自己紹介をここに書きます。</p>
         </div>
         -->
     </div>
