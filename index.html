@@ -9,39 +9,81 @@
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             color: #333;
-            padding: 50px;
-            line-height: 1.6;
-            text-align: center;
-        }
-        .container {
-            max-width: 700px;
-            margin: auto;
-            background-color: #fff;
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
             margin-bottom: 40px;
         }
-        img {
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
-        h2 {
-            margin-top: 30px;
+
+        .card h2 {
+            margin: 10px 0 5px 0;
             color: #444;
+            font-size: 18px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
-    <!-- 子供タイプリスト -->
-    <div class="container">
-        <h2>子供タイプリスト：中原哲太郎</h2>
-        <img src="<img src="https://media.discordapp.net/attachments/1403312014507507743/1403693173385068686/SPOILER_402883904_852476969852519_4631502010971770191_n.jpg?ex=689dc0a3&amp;is=689c6f23&amp;hm=2150d3e1451c275ef335928321047a858b98e38a7be02f650cd2d1d1ac8cad32&amp;=&amp;format=webp&amp;width=606&amp;height=644" alt="画像"/>" 
-             alt="中原哲太郎の画像" />
-        <p>自己紹介：中原哲太郎です。こちらは子供タイプリストの一員です。</p>
+    <h1>子供タイプリスト</h1>
+
+    <div class="grid-container">
+        <!-- 子供1 -->
+        <div class="card">
+            <img src="https://media.discordapp.net/attachments/1403312014507507743/1403693173385068686/SPOILER_402883904_852476969852519_4631502010971770191_n.jpg" 
+                 alt="中原哲太郎の画像">
+            <h2>中原哲太郎</h2>
+            <p>自己紹介：中原哲太郎です。こちらは子供タイプリストの一員です。</p>
+        </div>
+
+        <!-- # ここに子供2を追加 -->
+        <!--
+        <div class="card">
+            <img src="子供2の画像URL" alt="子供2の画像">
+            <h2>子供2の名前</h2>
+            <p>自己紹介：子供2の自己紹介をここに書きます。</p>
+        </div>
+        -->
+
+        <!-- # ここに子供3を追加 -->
+        <!--
+        <div class="card">
+            <img src="子供3の画像URL" alt="子供3の画像">
+            <h2>子供3の名前</h2>
+            <p>自己紹介：子供3の自己紹介をここに書きます。</p>
+        </div>
+        -->
+
+        <!-- # 必要に応じて同じ形式で追加 -->
     </div>
 
 </body>
