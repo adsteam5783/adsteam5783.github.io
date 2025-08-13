@@ -1,152 +1,162 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>toyショップ - ECサイト</title>
+  <title>軽量・安全な動画再生（自動再生なし＆保存負荷を抑える）</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Montserrat&display=swap');
+    :root { --fg:#0f172a; --muted:#64748b; --bg:#f8fafc; --card:#ffffff; --ring:#e2e8f0; }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Hiragino Kaku Gothic ProN","Meiryo",sans-serif;}
+    header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:rgba(248,250,252,0.8);border-bottom:1px solid var(--ring);z-index:10}
+    .wrap{max-width:980px;margin:0 auto;padding:16px;}
+    h1{font-size:20px;margin:6px 0 8px}
+    p{margin:0 0 14px;color:var(--muted)}
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      color: #eee;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0 40px}
+    .card{background:var(--card);border:1px solid var(--ring);border-radius:16px;box-shadow:0 2px 12px rgba(15,23,42,.04);overflow:hidden}
+    .card .meta{padding:10px 12px;border-top:1px solid var(--ring);display:flex;align-items:center;gap:12px;justify-content:space-between}
+    .note{font-size:12px;color:var(--muted)}
 
-    header {
-      width: 100%;
-      text-align: center;
-      padding: 30px 0;
-      background: rgba(0, 255, 213, 0.1);
-      border-bottom: 2px solid #00ffd5;
-      box-shadow: 0 4px 20px rgba(0, 255, 213, 0.3);
-    }
+    /* ▼ 共通のプレースホルダー（クリックで読み込み） */
+    .placeholder{position:relative;aspect-ratio:16/9;background:#e2e8f0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+    .placeholder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.9)}
+    .placeholder button{position:relative;z-index:2;border:0;border-radius:9999px;padding:14px 18px;font-weight:700;background:#111827;color:#fff;box-shadow:0 6px 30px rgba(0,0,0,.25)}
+    .placeholder .badge{position:absolute;left:10px;bottom:10px;background:rgba(17,24,39,.85);color:#fff;font-size:12px;padding:4px 8px;border-radius:999px}
 
-    header h1 {
-      font-family: 'Roboto Slab', serif;
-      font-size: 3rem;
-      letter-spacing: 3px;
-      text-shadow: 0 0 15px #00ffd5;
-      color: #00ffd5;
-      margin: 0;
-    }
+    /* 実動画のラッパー */
+    .video-wrap{position:relative;aspect-ratio:16/9;background:#000}
+    .video-wrap video,.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%}
 
-    .profile-container {
-      display: flex;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-      max-width: 800px;
-      width: 90%;
-      align-items: center;
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-
-    .profile-text {
-      flex: 1;
-      padding-right: 30px;
-    }
-
-    .profile-text h2 {
-      font-family: 'Roboto Slab', serif;
-      font-weight: 700;
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px #00ffd5;
-    }
-
-    .profile-text p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #a0e9e0;
-    }
-
-    .profile-img img {
-      width: 220px;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid #00ffd5;
-      box-shadow: 0 0 15px #00ffd5;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .profile-img img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 30px #00ffd5;
-    }
-
-    .sale-card {
-      background: rgba(255, 215, 0, 0.1);
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.3);
-      max-width: 800px;
-      width: 90%;
-      font-size: 1rem;
-      line-height: 1.6;
-      border: 2px solid gold;
-      margin-bottom: 40px;
-    }
-
-    .sale-card h2 {
-      font-family: 'Roboto Slab', serif;
-      color: gold;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    @media (max-width: 700px) {
-      .profile-container {
-        flex-direction: column;
-        text-align: center;
-      }
-      .profile-text {
-        padding-right: 0;
-        margin-bottom: 20px;
-      }
+    /* 小さめ画面で余白を確保 */
+    @media (max-width:480px){
+      .wrap{padding:12px}
+      h1{font-size:18px}
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>💎 toyショップ 💎</h1>
-  </header>
-
-  <div class="profile-container">
-    <div class="profile-text">
-      <h2>toy, 中原哲太郎</h2>
-      <p>
-        年齢：非公開<br>
-        趣味：ゲーム、プログラミング、音楽<br>
-        所属事務所：クラージュキッズ
-      </p>
-    </div>
-    <div class="profile-img">
-      <img src="https://media.discordapp.net/attachments/1403312014507507743/1403693173385068686/SPOILER_402883904_852476969852519_4631502010971770191_n.jpg?ex=689d17e3&amp;is=689bc663&amp;hm=afb847d9a9f1874b9e1ca838a226474a42cdaea13f26e29e217c25f61786425a&amp;=&amp;format=webp&amp;width=606&amp;height=644" alt="toyの顔写真" />
-    </div>
+<header>
+  <div class="wrap">
+    <h1>自動再生なし・ダウンロード抑制・必要なときだけ読み込む</h1>
+    <p>クリックされるまで動画データを読み込まないので、CPU/SSD 負荷を抑えられます。外れたら自動停止＆メモリ解放も行います。</p>
   </div>
+</header>
 
-  <div class="sale-card">
-    <h2>激レア認証ボットコード 期間限定販売</h2>
-    <p>
-      かつて私が開発・運用していた限定配布の認証ボットコードを、期間限定で販売いたします。<br>
-      <strong>価格：</strong> 500円（特別価格）<br>
-      <strong>販売期間：</strong> 8月13日〜8月19日<br>
-      <strong>機能：</strong> Discordサーバー自動ロール付与・認証管理機能搭載、Python・Flask・Vercel対応<br>
-      <strong>注意：</strong> 個人情報の取り扱いにご注意ください。販売後は簡単な導入サポートのみ。<br>
-      お支払い方法：Googleカードのみ<br>
-      <em>先着順、欲しい方はDMまで！</em>
-    </p>
-  </div>
+<main class="wrap">
+  <section class="grid">
+    <!-- A. ローカル（mp4）用：クリックで source を挿入して再生開始 -->
+    <article class="card" data-kind="mp4">
+      <div class="placeholder" data-target="v-local" aria-label="動画を読み込む">
+        <img src="img/sample.jpg" alt="サムネイル" loading="lazy" />
+        <span class="badge">ローカル MP4 / 720p</span>
+        <button type="button">再生する</button>
+      </div>
+      <div class="video-wrap" hidden>
+        <video id="v-local" preload="none" playsinline controls 
+               controlslist="nodownload noplaybackrate" 
+               disablepictureinpicture>
+          <!-- クリックまで <source> を挿入しない -->
+        </video>
+      </div>
+      <div class="meta">
+        <span class="note">※ 実ファイル例: <code>videos/sample-720p.mp4</code>（用意して差し替えてください）</span>
+      </div>
+    </article>
+
+    <!-- B. YouTube 埋め込み（軽量版）：クリックまで iframe を生成しない -->
+    <article class="card" data-kind="youtube">
+      <div class="placeholder" data-yt="dQw4w9WgXcQ" aria-label="YouTubeを読み込む">
+        <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="YouTube サムネイル" loading="lazy" />
+        <span class="badge">YouTube（nocookie）</span>
+        <button type="button">再生する</button>
+      </div>
+      <div class="video-wrap" hidden></div>
+      <div class="meta">
+        <span class="note">YouTube は <code>youtube-nocookie.com</code> を使用し、クリックまではリクエストを発生させません。</span>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<script>
+  // ユーティリティ：要素がビューポート外に出たら video を止める
+  const autoPauseObserver = new IntersectionObserver((entries)=>{
+    for (const e of entries){
+      if (!e.isIntersecting){
+        const v = e.target.querySelector('video, iframe');
+        if (!v) continue;
+        if (v.tagName === 'VIDEO') { v.pause?.(); }
+        // iframe(YouTube) は src を一時退避→停止→復帰で消費を抑える
+        if (v.tagName === 'IFRAME') {
+          const holder = e.target;
+          if (!holder.dataset.src) holder.dataset.src = v.src; // 一度だけ保持
+          v.src = 'about:blank';
+        }
+      } else {
+        // 戻ってきたら YouTube の src を戻す（自動再生はしない）
+        const ifr = e.target.querySelector('iframe');
+        if (ifr && e.target.dataset.src && ifr.src === 'about:blank') {
+          ifr.src = e.target.dataset.src;
+        }
+      }
+    }
+  }, { threshold: 0.01 });
+
+  // プレースホルダー → 実動画へ置き換え
+  document.querySelectorAll('.card').forEach(card=>{
+    const ph = card.querySelector('.placeholder');
+    const wrap = card.querySelector('.video-wrap');
+
+    ph.addEventListener('click', ()=>{
+      ph.hidden = true;
+      wrap.hidden = false;
+
+      if (card.dataset.kind === 'mp4') {
+        const video = wrap.querySelector('video');
+        // クリックされた瞬間にだけ source を挿入（preload しない）
+        const src = 'videos/sample-720p.mp4'; // ★ 実ファイルに置き換えてください
+        const type = 'video/mp4';
+        const s = document.createElement('source');
+        s.src = src; s.type = type;
+        video.appendChild(s);
+        video.addEventListener('loadedmetadata', ()=> video.play().catch(()=>{}), { once:true });
+        // 終了時にメモリを解放（ソース除去）
+        video.addEventListener('ended', ()=>{
+          video.pause();
+          video.removeAttribute('src');
+          while(video.firstChild) video.removeChild(video.firstChild);
+        });
+        autoPauseObserver.observe(wrap);
+      }
+
+      if (card.dataset.kind === 'youtube') {
+        const ytId = ph.dataset.yt;
+        const iframe = document.createElement('iframe');
+        iframe.setAttribute('allowfullscreen','');
+        iframe.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+        iframe.setAttribute('allow','accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+        iframe.setAttribute('title','YouTube video player');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${ytId}?autoplay=1&rel=0`; // クリック時のみ生成
+        wrap.appendChild(iframe);
+        autoPauseObserver.observe(wrap);
+      }
+    }, { once:true });
+  });
+
+  // 右クリック・長押しからの直接保存をある程度抑止（完全ではありません）
+  document.addEventListener('contextmenu', (e)=>{
+    const withinVideo = e.target.closest('video, .placeholder, iframe');
+    if (withinVideo) e.preventDefault();
+  });
+
+  // ページ離脱時：再生中の video を停止し、ソースを外して書き込み/メモリ負荷を下げる
+  window.addEventListener('pagehide', ()=>{
+    document.querySelectorAll('video').forEach(v=>{
+      try { v.pause(); v.removeAttribute('src'); while(v.firstChild) v.removeChild(v.firstChild); } catch {}
+    });
+    document.querySelectorAll('.video-wrap iframe').forEach(f=>{ try { f.src = 'about:blank'; } catch{} });
+  });
+</script>
 </body>
 </html>
