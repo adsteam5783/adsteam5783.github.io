@@ -7,45 +7,35 @@
 <style>
     /* 全体設定 */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body, html { height: 100%; font-family: 'Segoe UI', sans-serif; color: #fff; overflow-x: hidden; }
-
-    /* 背景動画 */
-    #bg-video {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        object-fit: cover;
-        z-index: -1;
-        filter: brightness(0.5);
-    }
+    body, html { height: 100%; font-family: 'Segoe UI', sans-serif; color: #fff; background-color: #0f111a; }
 
     /* コンテンツ中央配置 */
     .container {
         position: relative;
         z-index: 1;
         text-align: center;
-        padding: 50px 20px;
+        padding: 80px 20px;
     }
 
     h1 {
         font-size: 4em;
         color: #00bfff;
         text-shadow: 0 0 20px rgba(0,191,255,0.7);
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
     p.lead {
         font-size: 1.3em;
         line-height: 1.6;
         max-width: 800px;
-        margin: 0 auto 40px auto;
+        margin: 0 auto 50px auto;
         color: #e0e0e0;
     }
 
     h2 {
         color: #ff8c00;
         font-size: 2em;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
         text-shadow: 0 0 10px rgba(255,140,0,0.5);
     }
 
@@ -95,12 +85,6 @@
 </style>
 </head>
 <body>
-    <!-- 背景動画 -->
-    <video id="bg-video" loop>
-        <source src="background.mp4" type="video/mp4">
-        お使いのブラウザは動画再生に対応していません。
-    </video>
-
     <div class="container">
         <h1>SecureLink Bot</h1>
         <p class="lead">最先端の Discord 認証ボット。<br>安全性と利便性を同時に実現し、サーバー運営を革新的にサポートします。</p>
@@ -130,12 +114,5 @@
 
         <p class="note">※セットアップサポートは購入者限定です。</p>
     </div>
-
-<script>
-window.addEventListener('click', () => {
-    const video = document.getElementById('bg-video');
-    video.play(); // クリックで音あり再生
-}, { once: true });
-</script>
 </body>
 </html>
