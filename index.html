@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>名鉄風LEDルーレット＋音声送信</title>
+<title>名鉄風LEDルーレット＋音声アナウンス</title>
 <style>
   body {
     background-color: black;
@@ -14,7 +14,6 @@
     height: 100vh;
     margin: 0;
     font-family: 'Courier New', monospace;
-    overflow: hidden;
     color: #ff0;
   }
 
@@ -82,99 +81,84 @@
 <button id="voiceButton">音声で送信</button>
 
 <script>
-  const displayData = [
-    { type: "普通", destination: "名古屋", color: "#0f0", announcement: "名古屋で次第発車します" },
-    { type: "快速", destination: "岐阜", color: "#00f", announcement: "岐阜で次第発車します" },
-    { type: "特急", destination: "豊橋", color: "#f00", announcement: "豊橋で次第発車します" },
-    { type: "急行", destination: "知多半田", color: "#ffa500", announcement: "知多半田で次第発車します" },
-    { type: "臨時", destination: "豊川", color: "#ff0", announcement: "豊川で次第発車します" },
-    { type: "回送", destination: "大府", color: "#aaa", announcement: "大府で次第発車します" }
-  ];
+const displayData = [
+  { type: "普通", destination: "名古屋", color: "#0f0", time: "11:30", stops: ["岐阜"] },
+  { type: "快速", destination: "岐阜", color: "#00f", time: "11:35", stops: ["名古屋"] },
+  { type: "特急", destination: "豊橋", color: "#f00", time: "11:40", stops: ["名古屋"] },
+  { type: "急行", destination: "知多半田", color: "#ffa500", time: "11:45", stops: ["名古屋"] },
+  { type: "臨時", destination: "豊川", color: "#ff0", time: "11:50", stops: ["名古屋"] },
+  { type: "回送", destination: "大府", color: "#aaa", time: "11:55", stops: [] }
+];
 
-  const ledType = document.getElementById("ledType");
-  const ledDestination = document.getElementById("ledDestination");
-  const ledAnnouncement = document.getElementById("ledAnnouncement");
-  const randomButton = document.getElementById("randomButton");
-  const voiceButton = document.getElementById("voiceButton");
+const ledType = document.getElementById("ledType");
+const ledDestination = document.getElementById("ledDestination");
+const ledAnnouncement = document.getElementById("ledAnnouncement");
+const randomButton = document.getElementById("randomButton");
+const voiceButton = document.getElementById("voiceButton");
 
-  function startRoulette() {
-    let count = 0;
-    const maxCount = 100;
-    const intervalTime = 30;
+let currentData = displayData[0];
 
-    const interval = setInterval(() => {
-      count++;
+// アナウンス生成関数
+function generateAnnouncement(data) {
+  const stopText = data.stops.length > 0 ? `この${data.type}には${data.stops.join('、')}にも止まります。` : "";
+  return `${data.destination}駅で${data.type}${data.destination}を待ち合わせます。発車は${data.time}です。${stopText}`;
+}
 
-      const randomIndex = Math.floor(Math.random() * displayData.length);
-      const data = displayData[randomIndex];
+// 音声再生
+function speakAnnouncement(data) {
+  const utterance = new SpeechSynthesisUtterance(generateAnnouncement(data));
+  utterance.lang = 'ja-JP';
+  speechSynthesis.speak(utterance);
+}
 
-      // 種別表示
-      ledType.textContent = data.type;
-      ledType.style.backgroundColor = data.color;
+// ルーレット表示
+function startRoulette() {
+  let count = 0;
+  const maxCount = 100;
+  const intervalTime = 30;
 
-      // 行き先表示
-      ledDestination.textContent = data.destination;
+  const interval = setInterval(() => {
+    count++;
+    const randomIndex = Math.floor(Math.random() * displayData.length);
+    const data = displayData[randomIndex];
+    currentData = data;
 
-      // アナウンス表示
-      ledAnnouncement.textContent = data.announcement;
+    ledType.textContent = data.type;
+    ledType.style.backgroundColor = data.color;
+    ledDestination.textContent = data.destination;
+    ledAnnouncement.textContent = generateAnnouncement(data);
 
-      // 上下ループ演出
-      const offset = Math.sin(count / 3) * 20;
-      ledType.style.transform = `translateY(${offset}px)`;
-      ledDestination.style.transform = `translateY(${offset}px)`;
-      ledAnnouncement.style.transform = `translateY(${offset}px)`;
+    const offset = Math.sin(count / 3) * 20;
+    ledType.style.transform = `translateY(${offset}px)`;
+    ledDestination.style.transform = `translateY(${offset}px)`;
+    ledAnnouncement.style.transform = `translateY(${offset}px)`;
 
-      if(count >= maxCount){
-        clearInterval(interval);
-        ledType.style.transform = 'translateY(0)';
-        ledDestination.style.transform = 'translateY(0)';
-        ledAnnouncement.style.transform = 'translateY(0)';
+    if(count >= maxCount){
+      clearInterval(interval);
+      ledType.style.transform = 'translateY(0)';
+      ledDestination.style.transform = 'translateY(0)';
+      ledAnnouncement.style.transform = 'translateY(0)';
 
-        // 横スクロールする行き先
-        const scrollWidth = ledDestination.scrollWidth;
-        const containerWidth = ledDestination.parentElement.offsetWidth;
-        let pos = containerWidth;
+      // 横スクロール
+      const scrollWidth = ledDestination.scrollWidth;
+      const containerWidth = ledDestination.parentElement.offsetWidth;
+      let pos = containerWidth;
 
-        const scrollInterval = setInterval(() => {
-          pos -= 2;
-          if(pos < -scrollWidth) pos = containerWidth;
-          ledDestination.style.left = pos + 'px';
-        }, 30);
-      }
-    }, intervalTime);
-  }
-
-  // ランダム表示ボタン
-  randomButton.addEventListener('click', startRoulette);
-
-  // ページロード時に自動
-  startRoulette();
-
-  // 音声認識で送信
-  voiceButton.addEventListener('click', () => {
-    if (!('webkitSpeechRecognition' in window)) {
-      alert('このブラウザは音声認識に対応していません');
-      return;
+      const scrollInterval = setInterval(() => {
+        pos -= 2;
+        if(pos < -scrollWidth) pos = containerWidth;
+        ledDestination.style.left = pos + 'px';
+      }, 30);
     }
+  }, intervalTime);
+}
 
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'ja-JP';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+// ボタン設定
+randomButton.addEventListener('click', startRoulette);
+voiceButton.addEventListener('click', () => speakAnnouncement(currentData));
 
-    recognition.start();
-
-    recognition.onresult = (event) => {
-      const speechText = event.results[0][0].transcript;
-      console.log('音声認識結果:', speechText);
-      // 音声を認識したらルーレット開始
-      startRoulette();
-    };
-
-    recognition.onerror = (event) => {
-      console.error('音声認識エラー:', event.error);
-    };
-  });
+// ページロード時に自動
+startRoulette();
 </script>
 
 </body>
