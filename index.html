@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>名鉄LED電光板例</title>
+<title>名鉄LED電光板ランダム更新</title>
 <style>
 body {
   background-color: black;
@@ -83,12 +83,13 @@ button:hover {
 
 <div class="led-container">
   <div class="led-line">
-    <span class="led-type" id="ledType">急行</span>
-    <span class="led-destination" id="ledDestination">犬山</span>
+    <span class="led-type" id="ledType">種別</span>
+    <span class="led-destination" id="ledDestination">行き先</span>
   </div>
   <div class="led-announcement" id="ledAnnouncement"></div>
 </div>
 
+<button id="updateButton">更新</button>
 <button id="voiceButton">音声で送信</button>
 
 <script>
@@ -97,23 +98,46 @@ const displayData = [
   { type: "普通", destination: "名古屋", time: "11:30" },
   { type: "快速", destination: "岐阜", time: "11:35" },
   { type: "急行", destination: "犬山", time: "11:45" },
-  { type: "特急", destination: "豊橋", time: "12:00" }
+  { type: "特急", destination: "豊橋", time: "12:00" },
+  { type: "臨時", destination: "豊川", time: "11:50" }
 ];
 
-// 現在表示
-const current = displayData.find(d => d.type === "急行"); // 固定例
+const speedOrder = ["普通", "快速", "急行", "特急", "臨時"];
+
+const ledType = document.getElementById("ledType");
+const ledDestination = document.getElementById("ledDestination");
 const ledAnnouncement = document.getElementById("ledAnnouncement");
+let scrollInterval;
 
 // アナウンス生成
 function generateAnnouncement(train) {
-  return `この電車は、${train.type} ${train.destination}行きです。発車は${train.time}です。`;
+  // 基本アナウンス
+  let text = `この電車は、${train.type} ${train.destination}行きです。発車は${train.time}です。`;
+
+  // 種別順リストを追加
+  const orderedList = displayData
+    .filter(d => speedOrder.includes(d.type))
+    .sort((a,b) => speedOrder.indexOf(a.type)-speedOrder.indexOf(b.type))
+    .map(d => `${d.type} ${d.destination}`)
+    .join(' → ');
+  text += ` 種別順: ${orderedList}`;
+
+  return text;
 }
 
-// スクロール開始
-function startScrollAnnouncement() {
+// 表示更新（ランダム）
+function updateDisplay() {
+  const index = Math.floor(Math.random() * displayData.length);
+  const current = displayData[index];
+
+  ledType.textContent = current.type;
+  ledDestination.textContent = current.destination;
   ledAnnouncement.textContent = generateAnnouncement(current);
+
+  // 横スクロールリセット
   let pos = ledAnnouncement.parentElement.offsetWidth;
-  setInterval(() => {
+  if(scrollInterval) clearInterval(scrollInterval);
+  scrollInterval = setInterval(() => {
     pos -= 2;
     if(pos < -ledAnnouncement.scrollWidth){
       pos = ledAnnouncement.parentElement.offsetWidth;
@@ -121,7 +145,7 @@ function startScrollAnnouncement() {
     ledAnnouncement.style.left = pos + 'px';
   }, 30);
 
-  // 自動音声
+  // 自動音声アナウンス
   speakAnnouncement(current);
 }
 
@@ -132,13 +156,15 @@ function speakAnnouncement(train) {
   speechSynthesis.speak(utterance);
 }
 
-// ボタンで任意再生
+// ボタンイベント
+document.getElementById("updateButton").addEventListener('click', updateDisplay);
 document.getElementById("voiceButton").addEventListener('click', () => {
+  const current = { type: ledType.textContent, destination: ledDestination.textContent, time: displayData.find(d=>d.destination===ledDestination.textContent)?.time || "不明" };
   speakAnnouncement(current);
 });
 
-// 初回スクロール開始
-startScrollAnnouncement();
+// 初期表示
+updateDisplay();
 </script>
 
 </body>
