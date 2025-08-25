@@ -5,75 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>名鉄風LEDルーレット＋音声アナウンス</title>
 <style>
-  body {
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: 'Courier New', monospace;
-    color: #ff0;
-  }
+body {
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  color: #ff0;
+}
 
-  .led-container {
-    width: 80%;
-    height: 180px;
-    overflow: hidden;
-    position: relative;
-    border: 2px solid #ff0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
+.led-container {
+  width: 80%;
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid #ff0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-  .led-type {
-    font-size: 3em;
-    font-weight: bold;
-    padding: 5px 20px;
-    margin-bottom: 5px;
-    border-radius: 5px;
-    min-width: 200px;
-    text-align: center;
-    color: black;
-  }
+.led-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 
-  .led-destination {
-    font-size: 2em;
-    white-space: nowrap;
-    position: relative;
-    left: 0;
-  }
+.led-type {
+  font-size: 3em;
+  font-weight: bold;
+  padding: 5px 20px;
+  border-radius: 5px;
+  color: black;
+  min-width: 150px;
+  text-align: center;
+}
 
-  .led-announcement {
-    font-size: 1.5em;
-    margin-top: 10px;
-    text-align: center;
-  }
+.led-destination {
+  font-size: 2.5em;
+  white-space: nowrap;
+  text-align: center;
+}
 
-  button {
-    font-size: 1.5em;
-    padding: 10px 20px;
-    background-color: #222;
-    color: #ff0;
-    border: 2px solid #ff0;
-    cursor: pointer;
-    margin: 5px;
-  }
+.led-announcement {
+  font-size: 1.5em;
+  margin-top: 10px;
+  text-align: center;
+}
 
-  button:hover {
-    background-color: #444;
-  }
+button {
+  font-size: 1.5em;
+  padding: 10px 20px;
+  background-color: #222;
+  color: #ff0;
+  border: 2px solid #ff0;
+  cursor: pointer;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: #444;
+}
 </style>
 </head>
 <body>
 
 <div class="led-container">
-  <div class="led-type" id="ledType">種別</div>
-  <div class="led-destination" id="ledDestination">行き先</div>
+  <div class="led-line">
+    <span class="led-type" id="ledType">種別</span>
+    <span class="led-destination" id="ledDestination">行き先</span>
+  </div>
   <div class="led-announcement" id="ledAnnouncement">アナウンス</div>
 </div>
 
@@ -98,20 +105,17 @@ const voiceButton = document.getElementById("voiceButton");
 
 let currentData = displayData[0];
 
-// アナウンス生成関数
 function generateAnnouncement(data) {
   const stopText = data.stops.length > 0 ? `この${data.type}には${data.stops.join('、')}にも止まります。` : "";
   return `${data.destination}駅で${data.type}${data.destination}を待ち合わせます。発車は${data.time}です。${stopText}`;
 }
 
-// 音声再生
 function speakAnnouncement(data) {
   const utterance = new SpeechSynthesisUtterance(generateAnnouncement(data));
   utterance.lang = 'ja-JP';
   speechSynthesis.speak(utterance);
 }
 
-// ルーレット表示
 function startRoulette() {
   let count = 0;
   const maxCount = 100;
@@ -139,7 +143,6 @@ function startRoulette() {
       ledDestination.style.transform = 'translateY(0)';
       ledAnnouncement.style.transform = 'translateY(0)';
 
-      // 横スクロール
       const scrollWidth = ledDestination.scrollWidth;
       const containerWidth = ledDestination.parentElement.offsetWidth;
       let pos = containerWidth;
@@ -153,11 +156,9 @@ function startRoulette() {
   }, intervalTime);
 }
 
-// ボタン設定
 randomButton.addEventListener('click', startRoulette);
 voiceButton.addEventListener('click', () => speakAnnouncement(currentData));
 
-// ページロード時に自動
 startRoulette();
 </script>
 
