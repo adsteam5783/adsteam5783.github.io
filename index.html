@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>名鉄LED電光板再現</title>
+<title>名鉄LED電光板</title>
 <style>
 body {
   background-color: black;
@@ -14,7 +14,6 @@ body {
   height: 100vh;
   margin: 0;
   font-family: 'Courier New', monospace;
-  color: #ff0;
 }
 
 .led-container {
@@ -27,16 +26,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
   background-color: black;
 }
 
 .led-line {
   display: flex;
+  justify-content: center; /* 上段固定 */
   align-items: center;
   gap: 20px;
   position: relative;
-  white-space: nowrap;
 }
 
 .led-type {
@@ -84,116 +82,77 @@ button:hover {
 <body>
 
 <div class="led-container">
-  <div class="led-line" id="ledLine">
-    <span class="led-type" id="ledType">種別</span>
-    <span class="led-destination" id="ledDestination">行き先</span>
+  <div class="led-line">
+    <span class="led-type" id="ledType">急行</span>
+    <span class="led-destination" id="ledDestination">知多半田</span>
   </div>
-  <div class="led-announcement" id="ledAnnouncement">アナウンス</div>
+  <div class="led-announcement" id="ledAnnouncement"></div>
 </div>
 
-<button id="randomButton">ランダム表示</button>
 <button id="voiceButton">音声で送信</button>
 
 <script>
 const displayData = [
-  { type: "急行", destination: "知多半田", color: "#ffa500", time: "11:45", stops: ["名古屋"], announcement: "" },
-  { type: "特急", destination: "豊橋", color: "#f00", time: "11:40", stops: ["名古屋"], announcement: "" },
-  { type: "快速", destination: "岐阜", color: "#00f", time: "11:35", stops: ["名古屋"], announcement: "" },
-  { type: "普通", destination: "名古屋", color: "#0f0", time: "11:30", stops: ["岐阜"], announcement: "" },
-  { type: "臨時", destination: "豊川", color: "#ff0", time: "11:50", stops: ["名古屋"], announcement: "" },
-  { type: "回送", destination: "大府", color: "#aaa", time: "11:55", stops: [], announcement: "" }
+  { type: "普通", destination: "名古屋", time: "11:30" },
+  { type: "快速", destination: "岐阜", time: "11:35" },
+  { type: "急行", destination: "知多半田", time: "11:45" },
+  { type: "特急", destination: "豊橋", time: "11:40" },
+  { type: "臨時", destination: "豊川", time: "11:50" },
+  { type: "回送", destination: "大府", time: "11:55" }
 ];
 
-const ledType = document.getElementById("ledType");
-const ledDestination = document.getElementById("ledDestination");
+const speedOrder = ["普通", "快速", "急行", "特急", "臨時", "回送"];
 const ledAnnouncement = document.getElementById("ledAnnouncement");
-const ledLine = document.getElementById("ledLine");
-const randomButton = document.getElementById("randomButton");
-const voiceButton = document.getElementById("voiceButton");
+let scrollInterval;
+let currentIndex = 0;
 
-let currentData = displayData[0];
-let scrollIntervals = [];
-
-function generateAnnouncement(data) {
-  const stopText = data.stops.length > 0 ? `この${data.type}には${data.stops.join('、')}にも止まります。` : "";
-  return `${data.destination}駅で${data.type}${data.destination}を待ち合わせます。発車は${data.time}です。${stopText}`;
+// アナウンス生成
+function generateAnnouncement(current) {
+  let text = `${current.destination}駅で${current.type}${current.destination}を待ち合わせます。発車は${current.time}です。この${current.type}には名古屋にも止まります。`;
+  const orderedList = displayData
+    .filter(d => speedOrder.includes(d.type))
+    .sort((a,b) => speedOrder.indexOf(a.type)-speedOrder.indexOf(b.type))
+    .map(d => `${d.type} ${d.destination}`)
+    .join(' → ');
+  text += ` 種別順: ${orderedList}`;
+  return text;
 }
 
-function speakAnnouncement(data) {
-  const utterance = new SpeechSynthesisUtterance(generateAnnouncement(data));
+// スクロール開始
+function startScrollAnnouncement() {
+  clearInterval(scrollInterval);
+
+  const current = displayData.find(d => d.type === "急行"); // 固定表示
+  ledAnnouncement.textContent = generateAnnouncement(current);
+
+  let pos = ledAnnouncement.parentElement.offsetWidth;
+  scrollInterval = setInterval(() => {
+    pos -= 2;
+    if(pos < -ledAnnouncement.scrollWidth){
+      pos = ledAnnouncement.parentElement.offsetWidth;
+    }
+    ledAnnouncement.style.left = pos + 'px';
+  }, 30);
+
+  // 自動音声アナウンス
+  speakAnnouncement(current);
+}
+
+// 音声再生
+function speakAnnouncement(current) {
+  const utterance = new SpeechSynthesisUtterance(generateAnnouncement(current));
   utterance.lang = 'ja-JP';
   speechSynthesis.speak(utterance);
 }
 
-function startScroll() {
-  clearScrollIntervals();
-  
-  let posLine = ledLine.parentElement.offsetWidth;
-  let posAnn = ledAnnouncement.parentElement.offsetWidth;
+document.getElementById("voiceButton").addEventListener('click', () => {
+  const current = displayData.find(d => d.type === "急行");
+  speakAnnouncement(current);
+});
 
-  const intervalLine = setInterval(() => {
-    posLine -= 2;
-    if(posLine < -ledLine.scrollWidth) posLine = ledLine.parentElement.offsetWidth;
-    ledLine.style.left = posLine + 'px';
-  }, 30);
-
-  const intervalAnn = setInterval(() => {
-    posAnn -= 2;
-    if(posAnn < -ledAnnouncement.scrollWidth) posAnn = ledAnnouncement.parentElement.offsetWidth;
-    ledAnnouncement.style.left = posAnn + 'px';
-  }, 30);
-
-  scrollIntervals.push(intervalLine, intervalAnn);
-}
-
-function clearScrollIntervals() {
-  scrollIntervals.forEach(i => clearInterval(i));
-  scrollIntervals = [];
-}
-
-function startRoulette() {
-  clearScrollIntervals();
-  let count = 0;
-  const maxCount = 100;
-  const intervalTime = 30;
-
-  const interval = setInterval(() => {
-    count++;
-    const randomIndex = Math.floor(Math.random() * displayData.length);
-    const data = displayData[randomIndex];
-    currentData = data;
-
-    ledType.textContent = data.type;
-    ledType.style.backgroundColor = data.color;
-    ledDestination.textContent = data.destination;
-    ledAnnouncement.textContent = generateAnnouncement(data);
-
-    const offset = Math.sin(count / 3) * 20;
-    ledType.style.transform = `translateY(${offset}px)`;
-    ledDestination.style.transform = `translateY(${offset}px)`;
-    ledAnnouncement.style.transform = `translateY(${offset}px)`;
-
-    if(count >= maxCount){
-      clearInterval(interval);
-      ledType.style.transform = 'translateY(0)';
-      ledDestination.style.transform = 'translateY(0)';
-      ledAnnouncement.style.transform = 'translateY(0)';
-
-      // 自動アナウンス
-      speakAnnouncement(currentData);
-
-      // スクロール開始
-      startScroll();
-    }
-  }, intervalTime);
-}
-
-randomButton.addEventListener('click', startRoulette);
-voiceButton.addEventListener('click', () => speakAnnouncement(currentData));
-
-startRoulette();
+// 初回スクロール開始
+startScrollAnnouncement();
 </script>
 
 </body>
 </html>
-
