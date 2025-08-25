@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>名鉄LED電光板</title>
+<title>名鉄LED電光板例</title>
 <style>
 body {
   background-color: black;
@@ -84,7 +84,7 @@ button:hover {
 <div class="led-container">
   <div class="led-line">
     <span class="led-type" id="ledType">急行</span>
-    <span class="led-destination" id="ledDestination">知多半田</span>
+    <span class="led-destination" id="ledDestination">犬山</span>
   </div>
   <div class="led-announcement" id="ledAnnouncement"></div>
 </div>
@@ -92,41 +92,28 @@ button:hover {
 <button id="voiceButton">音声で送信</button>
 
 <script>
+// 表示データ
 const displayData = [
   { type: "普通", destination: "名古屋", time: "11:30" },
   { type: "快速", destination: "岐阜", time: "11:35" },
-  { type: "急行", destination: "知多半田", time: "11:45" },
-  { type: "特急", destination: "豊橋", time: "11:40" },
-  { type: "臨時", destination: "豊川", time: "11:50" },
-  { type: "回送", destination: "大府", time: "11:55" }
+  { type: "急行", destination: "犬山", time: "11:45" },
+  { type: "特急", destination: "豊橋", time: "12:00" }
 ];
 
-const speedOrder = ["普通", "快速", "急行", "特急", "臨時", "回送"];
+// 現在表示
+const current = displayData.find(d => d.type === "急行"); // 固定例
 const ledAnnouncement = document.getElementById("ledAnnouncement");
-let scrollInterval;
-let currentIndex = 0;
 
 // アナウンス生成
-function generateAnnouncement(current) {
-  let text = `${current.destination}駅で${current.type}${current.destination}を待ち合わせます。発車は${current.time}です。この${current.type}には名古屋にも止まります。`;
-  const orderedList = displayData
-    .filter(d => speedOrder.includes(d.type))
-    .sort((a,b) => speedOrder.indexOf(a.type)-speedOrder.indexOf(b.type))
-    .map(d => `${d.type} ${d.destination}`)
-    .join(' → ');
-  text += ` 種別順: ${orderedList}`;
-  return text;
+function generateAnnouncement(train) {
+  return `この電車は、${train.type} ${train.destination}行きです。発車は${train.time}です。`;
 }
 
 // スクロール開始
 function startScrollAnnouncement() {
-  clearInterval(scrollInterval);
-
-  const current = displayData.find(d => d.type === "急行"); // 固定表示
   ledAnnouncement.textContent = generateAnnouncement(current);
-
   let pos = ledAnnouncement.parentElement.offsetWidth;
-  scrollInterval = setInterval(() => {
+  setInterval(() => {
     pos -= 2;
     if(pos < -ledAnnouncement.scrollWidth){
       pos = ledAnnouncement.parentElement.offsetWidth;
@@ -134,19 +121,19 @@ function startScrollAnnouncement() {
     ledAnnouncement.style.left = pos + 'px';
   }, 30);
 
-  // 自動音声アナウンス
+  // 自動音声
   speakAnnouncement(current);
 }
 
 // 音声再生
-function speakAnnouncement(current) {
-  const utterance = new SpeechSynthesisUtterance(generateAnnouncement(current));
+function speakAnnouncement(train) {
+  const utterance = new SpeechSynthesisUtterance(generateAnnouncement(train));
   utterance.lang = 'ja-JP';
   speechSynthesis.speak(utterance);
 }
 
+// ボタンで任意再生
 document.getElementById("voiceButton").addEventListener('click', () => {
-  const current = displayData.find(d => d.type === "急行");
   speakAnnouncement(current);
 });
 
