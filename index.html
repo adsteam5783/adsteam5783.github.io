@@ -3,67 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEDルーレット表示</title>
+<title>名鉄風LEDルーレット</title>
 <style>
   body {
     background-color: black;
-    color: #0f0;
-    font-family: 'Courier New', monospace;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
     height: 100vh;
     margin: 0;
+    font-family: 'Courier New', monospace;
     overflow: hidden;
   }
 
   .led-container {
-    width: 100%;
+    width: 80%;
+    height: 100px;
     overflow: hidden;
-    height: 50px;
     position: relative;
+    border: 2px solid #ff0; /* 名鉄風黄色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .led-display {
+    font-size: 3em;
+    color: #ff0; /* 名鉄風黄色 */
     position: absolute;
-    width: 100%;
+    white-space: nowrap;
     text-align: center;
-    font-size: 2em;
-    letter-spacing: 0.1em;
-    color: #0f0;
-  }
-
-  @keyframes scrollDown {
-    0% { top: -50px; }
-    100% { top: 0; }
   }
 </style>
 </head>
 <body>
 
-<div class="led-container" id="ledContainer">
-  <div class="led-display" id="ledDisplay">種別: 普通 / 行き先: 東京</div>
+<div class="led-container">
+  <div class="led-display" id="ledDisplay">種別: - / 行き先: -</div>
 </div>
 
 <script>
   const displayData = [
-    { type: "普通", destination: "東京" },
-    { type: "快速", destination: "大阪" },
-    { type: "特急", destination: "名古屋" },
-    { type: "急行", destination: "横浜" },
-    { type: "臨時", destination: "札幌" },
-    { type: "回送", destination: "博多" }
+    { type: "普通", destination: "名古屋" },
+    { type: "快速", destination: "岐阜" },
+    { type: "特急", destination: "豊橋" },
+    { type: "急行", destination: "知多半田" },
+    { type: "臨時", destination: "豊川" },
+    { type: "回送", destination: "大府" }
   ];
 
-  // ランダムに選ぶ
-  const randomIndex = Math.floor(Math.random() * displayData.length);
-  const data = displayData[randomIndex];
-
   const ledDisplay = document.getElementById("ledDisplay");
-  ledDisplay.textContent = `種別: ${data.type} / 行き先: ${data.destination}`;
+  let count = 0;
+  const maxCount = 100;
+  const intervalTime = 30;
 
-  // スクロールアニメーション
-  ledDisplay.style.animation = 'scrollDown 1s ease-out forwards';
+  const interval = setInterval(() => {
+    count++;
+
+    // ランダムに表示
+    const randomIndex = Math.floor(Math.random() * displayData.length);
+    const data = displayData[randomIndex];
+    ledDisplay.textContent = `種別: ${data.type} / 行き先: ${data.destination}`;
+
+    // 上下ループ演出
+    const offset = Math.sin(count / 3) * 20; // -20px～20px
+    ledDisplay.style.transform = `translateY(${offset}px)`;
+
+    if(count >= maxCount){
+      clearInterval(interval);
+      ledDisplay.style.transform = 'translateY(0)'; // 最後は中央に止める
+    }
+  }, intervalTime);
 </script>
 
 </body>
