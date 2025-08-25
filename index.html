@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>名鉄風LEDルーレット＋音声アナウンス</title>
+<title>LEDルーレット＋スクロールアナウンス</title>
 <style>
 body {
   background-color: black;
@@ -19,7 +19,7 @@ body {
 
 .led-container {
   width: 80%;
-  height: 180px;
+  height: 200px;
   overflow: hidden;
   position: relative;
   border: 2px solid #ff0;
@@ -35,6 +35,8 @@ body {
   justify-content: center;
   align-items: center;
   gap: 20px;
+  position: relative;
+  white-space: nowrap;
 }
 
 .led-type {
@@ -49,14 +51,14 @@ body {
 
 .led-destination {
   font-size: 2.5em;
-  white-space: nowrap;
   text-align: center;
 }
 
 .led-announcement {
   font-size: 1.5em;
   margin-top: 10px;
-  text-align: center;
+  position: relative;
+  white-space: nowrap;
 }
 
 button {
@@ -77,7 +79,7 @@ button:hover {
 <body>
 
 <div class="led-container">
-  <div class="led-line">
+  <div class="led-line" id="ledLine">
     <span class="led-type" id="ledType">種別</span>
     <span class="led-destination" id="ledDestination">行き先</span>
   </div>
@@ -100,23 +102,57 @@ const displayData = [
 const ledType = document.getElementById("ledType");
 const ledDestination = document.getElementById("ledDestination");
 const ledAnnouncement = document.getElementById("ledAnnouncement");
+const ledLine = document.getElementById("ledLine");
 const randomButton = document.getElementById("randomButton");
 const voiceButton = document.getElementById("voiceButton");
 
 let currentData = displayData[0];
+let scrollIntervals = [];
 
+// アナウンス生成
 function generateAnnouncement(data) {
   const stopText = data.stops.length > 0 ? `この${data.type}には${data.stops.join('、')}にも止まります。` : "";
   return `${data.destination}駅で${data.type}${data.destination}を待ち合わせます。発車は${data.time}です。${stopText}`;
 }
 
+// 音声再生
 function speakAnnouncement(data) {
   const utterance = new SpeechSynthesisUtterance(generateAnnouncement(data));
   utterance.lang = 'ja-JP';
   speechSynthesis.speak(utterance);
 }
 
+// スクロール開始
+function startScroll() {
+  // 横スクロールリセット
+  clearScrollIntervals();
+  
+  let posLine = ledLine.parentElement.offsetWidth;
+  let posAnn = ledAnnouncement.parentElement.offsetWidth;
+
+  const intervalLine = setInterval(() => {
+    posLine -= 2;
+    if(posLine < -ledLine.scrollWidth) posLine = ledLine.parentElement.offsetWidth;
+    ledLine.style.left = posLine + 'px';
+  }, 30);
+
+  const intervalAnn = setInterval(() => {
+    posAnn -= 2;
+    if(posAnn < -ledAnnouncement.scrollWidth) posAnn = ledAnnouncement.parentElement.offsetWidth;
+    ledAnnouncement.style.left = posAnn + 'px';
+  }, 30);
+
+  scrollIntervals.push(intervalLine, intervalAnn);
+}
+
+function clearScrollIntervals() {
+  scrollIntervals.forEach(i => clearInterval(i));
+  scrollIntervals = [];
+}
+
+// ルーレット表示
 function startRoulette() {
+  clearScrollIntervals();
   let count = 0;
   const maxCount = 100;
   const intervalTime = 30;
@@ -142,16 +178,7 @@ function startRoulette() {
       ledType.style.transform = 'translateY(0)';
       ledDestination.style.transform = 'translateY(0)';
       ledAnnouncement.style.transform = 'translateY(0)';
-
-      const scrollWidth = ledDestination.scrollWidth;
-      const containerWidth = ledDestination.parentElement.offsetWidth;
-      let pos = containerWidth;
-
-      const scrollInterval = setInterval(() => {
-        pos -= 2;
-        if(pos < -scrollWidth) pos = containerWidth;
-        ledDestination.style.left = pos + 'px';
-      }, 30);
+      startScroll();
     }
   }, intervalTime);
 }
@@ -159,6 +186,7 @@ function startRoulette() {
 randomButton.addEventListener('click', startRoulette);
 voiceButton.addEventListener('click', () => speakAnnouncement(currentData));
 
+// 初期実行
 startRoulette();
 </script>
 
